@@ -7,7 +7,9 @@ namespace DDDCinema.Promotions.ReceiveConditions
     {
         public DateTime DayToWatch { get; private set; }
 
-        public WatchAtSpecificDay(DateTime dayToWatch)
+		protected WatchAtSpecificDay() { }
+
+		public WatchAtSpecificDay(DateTime dayToWatch)
         {
             DayToWatch = dayToWatch;
         }

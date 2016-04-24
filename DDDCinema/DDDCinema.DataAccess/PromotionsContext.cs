@@ -1,20 +1,24 @@
 ﻿using System.Data.Entity;
-
-using DDDCinema.Movies;
-using DDDCinema.Movies.Notifications;
-using DDDCinema.DataAccess.AuditLogging;
-using DDDCinema.Movies.Authentication;
+using DDDCinema.Promotions;
+using DDDCinema.Promotions.Approving;
 
 namespace DDDCinema.DataAccess
 {
-    public class PromotionsContext : DbContext
-    {
-        public DbSet<LoginAttempt> LoginAttempts { get; set; }
-        public DbSet<AuditLog> AuditLogs { get; set; }
+	public class PromotionsContext : DbContext
+	{
+		public DbSet<Movie> Movies { get; set; }
+		public DbSet<PromotionDraft> PromotionDrafts { get; set; }
+		public DbSet<Promotion> Promotions { get; set; }
+		public DbSet<ApprovalProcess> ApprovalProcesses { get; set; }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-        }
-    }
+		public PromotionsContext(string connectionString) : base(connectionString)
+		{
+		}
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.HasDefaultSchema("Promotions");
+			modelBuilder.Configurations.AddFromAssembly(typeof(PromotionsContext).Assembly);
+		}
+	}
 }

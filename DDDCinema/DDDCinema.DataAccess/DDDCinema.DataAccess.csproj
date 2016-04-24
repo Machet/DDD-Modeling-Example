@@ -60,7 +60,15 @@
     <Compile Include="AuditLogging\AuditLog.cs" />
     <Compile Include="AuditLogging\AuditLogger.cs" />
     <Compile Include="Business\EfAuthenticationRepository.cs" />
+    <Compile Include="Business\EfPromotionRepository.cs" />
+    <Compile Include="Business\EfUserInRoleRepository.cs" />
     <Compile Include="Business\TransactionalCommandHandler.cs" />
+    <Compile Include="DbSetup\EntityMappings\PercentageMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\EditorMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\ReceiveConditionMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\BenefitMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\PromotionMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\PromotionDraftMapping.cs" />
     <Compile Include="PromotionsContext.cs" />
     <Compile Include="CinemaContext.cs" />
     <Compile Include="DbSetup\CinemaDbInitializer.cs" />
@@ -98,6 +106,10 @@
     <ProjectReference Include="..\DDDCinema.Presentation\DDDCinema.Presentation.csproj">
       <Project>{6c205623-6dca-444c-8252-27a5e209cb2d}</Project>
       <Name>DDDCinema.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDDCinema.Promotions\DDDCinema.Promotions.csproj">
+      <Project>{42c0a977-291c-410c-a3c5-2b8402651678}</Project>
+      <Name>DDDCinema.Promotions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

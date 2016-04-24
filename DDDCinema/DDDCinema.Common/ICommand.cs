@@ -1,4 +1,4 @@
-﻿namespace DDDCinema.Movies.Commands
+﻿namespace DDDCinema.Common
 {
     public interface ICommand
     {

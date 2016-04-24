@@ -2,7 +2,7 @@
 
 namespace DDDCinema.DataAccess.DbSetup
 {
-    public class CinemaDbInitializer : DropCreateDatabaseIfModelChanges<CinemaContext>
+    public class MoviesDbInitializer : DropCreateDatabaseIfModelChanges<CinemaContext>
     {
         protected override void Seed(CinemaContext context)
         {
@@ -12,4 +12,8 @@ namespace DDDCinema.DataAccess.DbSetup
             MovieTimeSeed.Seed(context);
         }
     }
+
+	public class PromotionsDbInitializer : DropCreateDatabaseIfModelChanges<PromotionsContext>
+	{
+	}
 }

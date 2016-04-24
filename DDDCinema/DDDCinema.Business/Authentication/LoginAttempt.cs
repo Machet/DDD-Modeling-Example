@@ -7,7 +7,8 @@ namespace DDDCinema.Movies.Authentication
         public Guid LoginAttemptId { get; set; }
         public bool Succeeded { get; set; }
         public Guid? UserId { get; set; }
-        public string Message { get; set; }
+        public string UserRole { get; set; }
+		public string Message { get; set; }
         public DateTime Time { get; set; }
 
         internal static LoginAttempt Failed(Guid id, string message)
@@ -30,7 +31,8 @@ namespace DDDCinema.Movies.Authentication
                 Succeeded = false,
                 Message = message,
                 Time = DateTime.Now,
-                UserId = user.Id
+                UserId = user.Id,
+				UserRole = user.Role
             };
         }
 
@@ -42,8 +44,9 @@ namespace DDDCinema.Movies.Authentication
                 Succeeded = true,
                 Message = "Successfull",
                 Time = DateTime.Now,
-                UserId = user.Id
+                UserId = user.Id,
+				UserRole = user.Role
             };
-        }
+		}
     }
 }

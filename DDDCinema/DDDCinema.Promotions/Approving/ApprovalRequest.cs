@@ -1,26 +1,28 @@
-﻿namespace DDDCinema.Promotions.Approving
+﻿using DDDCinema.Common;
+
+namespace DDDCinema.Promotions.Approving
 {
-    public class ApprovalRequest
-    {
-        public Editor Editor { get; private set; }
-        public ApprovalStatus Status { get; private set; }
-        public string Comment { get; private set; }
+	public class ApprovalRequest : IdentifiedValueObject
+	{
+		public Editor Editor { get; private set; }
+		public ApprovalStatus Status { get; private set; }
+		public string Comment { get; private set; }
 
-        public ApprovalRequest(Editor e)
-        {
-            Editor = e;
-            Status = ApprovalStatus.Pending;
-        }
+		public ApprovalRequest(Editor e)
+		{
+			Editor = e;
+			Status = ApprovalStatus.Pending;
+		}
 
-        public void Approve()
-        {
-            Status = ApprovalStatus.Accepted;
-        }
+		public void Approve()
+		{
+			Status = ApprovalStatus.Accepted;
+		}
 
-        public void Reject(string comment)
-        {
-            Comment = comment;
-            Status = ApprovalStatus.Rejected;
-        }
-    }
+		public void Reject(string comment)
+		{
+			Comment = comment;
+			Status = ApprovalStatus.Rejected;
+		}
+	}
 }

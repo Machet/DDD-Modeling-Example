@@ -1,0 +1,15 @@
+﻿@model DDDCinema.Promotions.Commands.CreatePromotionCommand
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Promotion</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.PromotionName, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}

@@ -1,0 +1,28 @@
+﻿@model List<DDDCinema.Presentation.Promotions.PromotionDraftDTO>
+@{
+    ViewBag.Title = "My Promotions";
+}
+
+<h2>My Promotions</h2>
+
+@Html.ActionLink("Create new", "New", null, new { @class = "btn btn-default" })
+@if (Model.Count > 0)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var promotion in Model)
+        {
+            <tr>
+                <td>@promotion.Name</td>
+                <td>@promotion.State</td>
+                <td>@promotion.CreationDate</td>
+                <td></td>
+            </tr>
+        }
+    </table>
+}

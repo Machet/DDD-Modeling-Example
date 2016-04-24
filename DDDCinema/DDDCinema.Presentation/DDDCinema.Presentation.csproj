@@ -53,7 +53,7 @@
     <Compile Include="Promotions\ApprovalsView.cs" />
     <Compile Include="Promotions\IApprovalsViewRepository.cs" />
     <Compile Include="Promotions\IPromotionsViewRepository.cs" />
-    <Compile Include="Promotions\PromotionRowDTO.cs" />
+    <Compile Include="Promotions\PromotionDraftDTO.cs" />
     <Compile Include="RoomDTO.cs" />
     <Compile Include="SeanseDTO.cs" />
     <Compile Include="SeatDTO.cs" />

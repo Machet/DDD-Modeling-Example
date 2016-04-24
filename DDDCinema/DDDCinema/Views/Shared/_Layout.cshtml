@@ -1,5 +1,5 @@
 ﻿@{
-    var role = HttpContext.Current.Session["Role"].ToString();
+    var role = HttpContext.Current.Session["Role"] as string;
 }
 <!DOCTYPE html>
 <html>
@@ -31,13 +31,15 @@
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated && role == "User")
                     {
-                        <li>@Html.ActionLink("Movies", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
                         <li>@Html.ActionLink("Notifications", "Index", "Notification")</li>
                         <li>@Html.ActionLink("Audit", "Index", "Audit")</li>
                     }
                     @if (User.Identity.IsAuthenticated && role == "Editor")
                     {
-                        <li>@Html.ActionLink("Edit", "Index", "Edit")</li>
+                        <li>@Html.ActionLink("Promotions", "Index", "Promotion")</li>
+                        <li>@Html.ActionLink("Approvals", "Index", "Approval")</li>
+                        <li>@Html.ActionLink("Audit", "Index", "Audit")</li>
                     }
                 </ul>
             </div>

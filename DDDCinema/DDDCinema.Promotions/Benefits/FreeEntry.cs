@@ -7,7 +7,9 @@ namespace DDDCinema.Promotions.Benefits
     {
         public Movie Movie { get; private set; }
 
-        public FreeEntry(Movie movie)
+		protected FreeEntry() { }
+
+		public FreeEntry(Movie movie)
         {
             Require.NotNull(movie, nameof(movie));
             Movie = movie;

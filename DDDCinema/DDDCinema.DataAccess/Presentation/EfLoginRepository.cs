@@ -22,6 +22,7 @@ namespace DDDCinema.DataAccess.Presentation
                     Message = la.Message,
                     Succeeded = la.Succeeded,
                     UserId = la.UserId,
+					UserRole = la.UserRole,
                     UserName = la.UserId.HasValue
                         ? _context.Users.Where(u => u.Id == la.UserId).Select(u => u.Name).FirstOrDefault()
                         : null,

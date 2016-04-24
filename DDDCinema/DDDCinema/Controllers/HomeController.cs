@@ -1,30 +1,32 @@
-﻿using System;
-using System.Web.Mvc;
-using DDDCinema.Presentation;
+﻿using System.Web.Mvc;
+using DDDCinema.Common;
 
 namespace DDDCinema.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
-    {
-        private readonly IMovieViewRepository _repository;
+	[Authorize]
+	public class HomeController : Controller
+	{
+		private readonly ICurrentUserProvider _currentUserProvider;
 
-        public HomeController(IMovieViewRepository repository)
-        {
-            _repository = repository;
-        }
+		public HomeController(ICurrentUserProvider currentUserProvider)
+		{
+			_currentUserProvider = currentUserProvider;
+		}
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View(_repository.GetMovies(DateTime.Now));
-        }
+		[HttpGet]
+		public ActionResult Index()
+		{
+			if (_currentUserProvider.GetRole() == "User")
+			{
+				return RedirectToAction("Index", "Movie");
+			}
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult ChooseSeat(int seanseId)
-        {
-            return View(_repository.GetRoomBySeanse(seanseId));
-        }
-    }
+			if (_currentUserProvider.GetRole() == "Editor")
+			{
+				return RedirectToAction("Index", "Promotion");
+			}
+
+			return RedirectToAction("Index", "Login");
+		}
+	}
 }

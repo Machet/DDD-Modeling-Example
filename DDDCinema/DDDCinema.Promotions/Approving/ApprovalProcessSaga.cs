@@ -49,7 +49,7 @@ namespace DDDCinema.Promotions.Approving
 
         public void HandleTimeout(ApprovalProcessTimeout timeoutData)
         {
-            ApprovalProcess process = _approvalRepository.GetProcess(timeoutData.ApprovalProcessId);
+            ApprovalProcess process = _approvalRepository.GetApprovalProcess(timeoutData.ApprovalProcessId);
             process.Complete();
         }
     }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DDDCinema.Presentation.Promotions
 {
-    public interface IPromotionsViewRepository
-    {
-        List<PromotionRowDTO> GetPromotions();
-    }
+	public interface IPromotionsViewRepository
+	{
+		List<PromotionDraftDTO> GetPromotions(Guid userId);
+	}
 }

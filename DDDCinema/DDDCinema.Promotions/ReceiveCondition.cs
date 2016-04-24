@@ -1,9 +1,10 @@
-﻿using DDDCinema.Promotions.Granting;
+﻿using DDDCinema.Common;
+using DDDCinema.Promotions.Granting;
 
 namespace DDDCinema.Promotions
 {
-    public abstract class ReceiveCondition
-    {
-        public abstract bool IsSatisfiedFor(Visitor visitor, IVisitorHistoryRepository historyService);
-    }
+	public abstract class ReceiveCondition : IdentifiedValueObject
+	{
+		public abstract bool IsSatisfiedFor(Visitor visitor, IVisitorHistoryRepository historyService);
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using DDDCinema.Movies.Authentication;
 using System;
+using DDDCinema.Common;
 
 namespace DDDCinema.DataAccess.AuditLogging
 {

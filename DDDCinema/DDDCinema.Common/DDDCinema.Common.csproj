@@ -45,6 +45,10 @@
     <Compile Include="DomainEvents\IDomainEventHandler.cs" />
     <Compile Include="DomainEvents\MovieWatched.cs" />
     <Compile Include="DomainTime.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandHandler.cs" />
+    <Compile Include="ICurrentUserProvider.cs" />
+    <Compile Include="IdentifiedValueObject.cs" />
     <Compile Include="Sheduling\ISheduler.cs" />
     <Compile Include="Sheduling\ITimeoutHandler.cs" />
     <Compile Include="Require.cs" />

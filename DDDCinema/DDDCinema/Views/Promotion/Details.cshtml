@@ -13,6 +13,7 @@
         <label>Valididty Dates:</label>
         @if (Model.StartDate.HasValue)
         {
+            <span></span>
             <div class="summary-row">
                 <label>From</label><span>@Model.StartDate.Value.ToShortDateString()</span>
             </div>
@@ -22,8 +23,16 @@
         }
         else
         {
-            <span>Not Set</span>
+            <span>Not set</span>
         }
+    </div>
+    <div class="summary-row">
+        <label>Condition:</label>
+        <span>@(string.IsNullOrEmpty(Model.Condition) ? "Not set" : Model.Condition)</span>
+    </div>
+    <div class="summary-row">
+        <label>Benefit:</label>
+        <span>@(string.IsNullOrEmpty(Model.Benefit) ? "Not set" : Model.Benefit)</span>
     </div>
 </div>
 
@@ -32,5 +41,7 @@
     <div class="content">
         @Html.ActionLink("Change Name", "Rename", new { id = Model.Id })
         @Html.ActionLink("Change Dates", "SetValidityDates", new { id = Model.Id })
+        @Html.ActionLink("Change Receive Condition", "SetCondition", new { id = Model.Id })
+        @Html.ActionLink("Change Benefit", "SetBenefit", new { id = Model.Id })
     </div>
 </div>

@@ -15,8 +15,10 @@ namespace DDDCinema.Promotions.ReceiveConditions
         {
             Require.NotNull(range, nameof(range));
             Require.IsTrue(() => requiredCount > 0, "required count should be positive");
+            Require.IsTrue(() => range.IsDefined(), "range must have definied dates");
             ValidityRange = range;
             RequiredCount = requiredCount;
+			Description = "Go to premiere movies " + requiredCount + " times between " + range.StartDate.Value.ToShortDateString() + " and " + range.EndDate.Value.ToShortDateString();
         }
 
         public override bool IsSatisfiedFor(Visitor visitor, IVisitorHistoryRepository historyService)

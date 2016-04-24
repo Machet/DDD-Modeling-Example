@@ -28,6 +28,7 @@ namespace DDDCinema.DataAccess.Presentation
         public Nullable<System.DateTime> ValidityRange_EndDate { get; set; }
         public Nullable<System.DateTime> DayToWatch { get; set; }
         public string Type { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Movies1> Movies1 { get; set; }

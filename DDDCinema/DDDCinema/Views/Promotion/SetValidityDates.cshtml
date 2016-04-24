@@ -28,5 +28,5 @@
         @Html.ValidationMessageFor(m => m.EndDate)
     </div>
     <button type="submit" class="btn btn-primary">Set</button>
-    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Cancel", "Details", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
 }

@@ -4,6 +4,7 @@ using DDDCinema.Movies;
 using DDDCinema.Movies.Notifications;
 using DDDCinema.DataAccess.AuditLogging;
 using DDDCinema.Movies.Authentication;
+using DDDCinema.DataAccess.DbSetup;
 
 namespace DDDCinema.DataAccess
 {
@@ -18,6 +19,11 @@ namespace DDDCinema.DataAccess
 		public DbSet<SeatAssignment> SeatAssignments { get; set; }
 		public DbSet<MailToSend> MailsToSend { get; set; }
 		public DbSet<SmsToSend> SmsesToSend { get; set; }
+
+		static CinemaContext()
+		{
+			Database.SetInitializer(new MoviesDbInitializer());
+		}
 
 		public CinemaContext(string connectionString) : base(connectionString)
 		{

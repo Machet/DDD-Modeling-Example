@@ -67,6 +67,7 @@ a.disabled {
 .summary {
     width: 500px;
     float: left;
+    position: relative;
 }
 
 .summary label {
@@ -74,10 +75,18 @@ a.disabled {
     font-weight: normal;
     display: inline-block;
     width: 150px;
+    position: absolute;
+    left: 0;
 }
 
 .summary span {
     font-weight: bold;
+    display: inline-block;
+    margin-left: 160px;
+}
+
+.summary-row {
+    padding: 3px 0;
 }
 
 .summary-row .summary-row label {
@@ -86,7 +95,7 @@ a.disabled {
 
 div.actions {
     float: right;
-    width: 200px;
+    width: 250px;
 }
 
 div.actions .header {
@@ -104,4 +113,22 @@ div.actions .content {
 
 div.actions a {
     display: block;
+}
+
+.radio input[type=text] {
+    display: inline; 
+    width: 100px;
+}
+
+.radio select {
+    display: inline;
+    width: 200px;
+}
+
+.radio input[type="radio"] {
+    float: none;
+}
+
+.radio label {
+    vertical-align: top;
 }

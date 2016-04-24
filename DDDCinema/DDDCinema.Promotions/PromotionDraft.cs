@@ -13,6 +13,7 @@ namespace DDDCinema.Promotions
 		public DraftState State { get; private set; }
 		public Editor Owner { get; private set; }
 		public DateTime CreationDate { get; private set; }
+		public bool IsComplete { get; private set; }
 
 		protected PromotionDraft() { }
 
@@ -38,6 +39,7 @@ namespace DDDCinema.Promotions
 			Require.NotNull(range, nameof(range));
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			ValidityRange = range;
+			CheckCompletion();
 		}
 
 		public void SetBenefit(Benefit benefit)
@@ -45,6 +47,7 @@ namespace DDDCinema.Promotions
 			Require.NotNull(benefit, nameof(benefit));
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			Benefit = benefit;
+			CheckCompletion();
 		}
 
 		public void SetReceiveCondition(ReceiveCondition condition)
@@ -52,6 +55,7 @@ namespace DDDCinema.Promotions
 			Require.NotNull(condition, nameof(condition));
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			ReceiveCondition = condition;
+			CheckCompletion();
 		}
 
 		public void MarkAsReady()
@@ -81,6 +85,16 @@ namespace DDDCinema.Promotions
 		{
 			Require.IsIn(State, DraftState.Accepted);
 			return new Promotion(ValidityRange, ReceiveCondition, Benefit);
+		}
+
+		private void CheckCompletion()
+		{
+			IsComplete =
+				ValidityRange != null
+				&& Benefit != null
+				&& ReceiveCondition != null
+				&& ValidityRange.IsDefined()
+				&& ValidityRange.StartsAfter(DomainTime.Current.Now);
 		}
 	}
 }

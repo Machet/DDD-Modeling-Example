@@ -1,0 +1,42 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.SetConditionView
+@{
+    ViewBag.Title = "Set Condition";
+}
+@section Scripts
+{
+    <script>
+        $('#Command_PremierePeriodStart').datetimepicker({ timepicker: false, format: 'd.m.Y' });
+        $('#Command_PremierePeriodEnd').datetimepicker({ timepicker: false, format: 'd.m.Y' });
+        $('#Command_DayToWatch').datetimepicker({ timepicker: false, format: 'd.m.Y' });
+    </script>
+}
+<h2>Set Condition</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Command.PromotionId)
+
+    <div class="radio">
+        <label>@Html.RadioButtonFor(m => m.Command.ConditionType, "GoToPremiere") 
+                Go to premiere movies
+                @Html.TextBoxFor(m => m.Command.PremireWatchCount, new { @class = "form-control" }) 
+                times between
+                @Html.TextBoxFor(m => m.Command.PremierePeriodStart, new { @class = "form-control" })
+                and 
+                @Html.TextBoxFor(m => m.Command.PremierePeriodEnd, new { @class = "form-control" })
+        </label>
+        @Html.ValidationMessageFor(m => m.Command.PremireWatchCount)
+        @Html.ValidationMessageFor(m => m.Command.PremierePeriodStart)
+        @Html.ValidationMessageFor(m => m.Command.PremierePeriodEnd)
+    </div>
+    <div class="radio">
+        <label>@Html.RadioButtonFor(m => m.Command.ConditionType, "WatchAtSpecificDay") Watch movie on @Html.TextBoxFor(m => m.Command.DayToWatch, new { @class = "form-control" })</label>
+        @Html.ValidationMessageFor(m => m.Command.DayToWatch)
+    </div>
+    <div class="radio">
+        <label>@Html.RadioButtonFor(m => m.Command.ConditionType, "WatchSpecificMovies") Watch all movies from list</label>
+        @Html.ListBoxFor(m => m.Command.MoviesToWatch, new MultiSelectList(Model.AvailableMovies, "Id", "Name"))
+    </div>
+    <button type="submit" class="btn btn-primary">Set</button>
+    @Html.ActionLink("Cancel", "Details", new { id = Model.Command.PromotionId }, new { @class = "btn btn-default" })
+}

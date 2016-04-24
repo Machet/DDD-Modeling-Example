@@ -194,6 +194,8 @@
     <Content Include="Views\Promotion\Details.cshtml" />
     <Content Include="Views\Promotion\SetValidityDates.cshtml" />
     <Content Include="Views\Promotion\Rename.cshtml" />
+    <Content Include="Views\Promotion\SetBenefit.cshtml" />
+    <Content Include="Views\Promotion\SetCondition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

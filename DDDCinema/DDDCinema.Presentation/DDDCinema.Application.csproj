@@ -57,14 +57,20 @@
     <Compile Include="Presentation\Promotions\ApprovalsView.cs" />
     <Compile Include="Presentation\Promotions\IApprovalsViewRepository.cs" />
     <Compile Include="Presentation\Promotions\IPromotionsViewRepository.cs" />
+    <Compile Include="Presentation\Promotions\MovieDTO.cs" />
     <Compile Include="Presentation\Promotions\PromotionDetailsDTO.cs" />
     <Compile Include="Presentation\Promotions\PromotionDraftDTO.cs" />
     <Compile Include="Presentation\Movies\RoomDTO.cs" />
     <Compile Include="Presentation\Movies\SeanseDTO.cs" />
     <Compile Include="Presentation\Movies\SeatDTO.cs" />
+    <Compile Include="Presentation\Promotions\SetBenefitView.cs" />
+    <Compile Include="Presentation\Promotions\SetConditionView.cs" />
     <Compile Include="Promotions\ApprovePromotionDraftCommandHandler.cs" />
     <Compile Include="Promotions\CreatePromotionCommandHandler.cs" />
+    <Compile Include="Promotions\IMovieRepository.cs" />
     <Compile Include="Promotions\RenamePromotionCommandHandler.cs" />
+    <Compile Include="Promotions\SetBenefitCommandHandler.cs" />
+    <Compile Include="Promotions\SetConditionCommandHandler.cs" />
     <Compile Include="Promotions\SetValidityDatesCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,9 +12,10 @@ namespace DDDCinema.Promotions.ReceiveConditions
 		public WatchAtSpecificDay(DateTime dayToWatch)
         {
             DayToWatch = dayToWatch;
-        }
+			Description = "Watch movie on " + dayToWatch.ToShortDateString();
+		}
 
-        public override bool IsSatisfiedFor(Visitor visitor, IVisitorHistoryRepository historyService)
+		public override bool IsSatisfiedFor(Visitor visitor, IVisitorHistoryRepository historyService)
         {
             return historyService.HasWatchedAnyMovie(visitor, DayToWatch);
         }

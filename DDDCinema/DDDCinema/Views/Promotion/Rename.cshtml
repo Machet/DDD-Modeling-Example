@@ -13,5 +13,5 @@
         @Html.TextBoxFor(m => m.PromotionName, new { @class = "form-control" })
     </div>
     <button type="submit" class="btn btn-primary">Rename</button>
-    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Cancel", "Details", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
 }

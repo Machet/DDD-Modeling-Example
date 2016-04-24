@@ -138,6 +138,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Discount_Value" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Movie_Id" Type="uniqueidentifier" />
           <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -162,6 +163,7 @@
           <Property Name="Owner_Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Owner_Name" Type="nvarchar(max)" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="IsComplete" Type="bit" Nullable="false" />
           <Property Name="Benefit_Id" Type="uniqueidentifier" />
           <Property Name="ReceiveCondition_Id" Type="uniqueidentifier" />
         </EntityType>
@@ -180,6 +182,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="RequiredCount" Type="int" />
           <Property Name="ValidityRange_StartDate" Type="datetime" />
           <Property Name="ValidityRange_EndDate" Type="datetime" />
@@ -522,6 +525,7 @@
           <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" FromRole="Benefits" ToRole="Movies1" />
           <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="PromotionDrafts" />
           <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="Promotions" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Movies1">
           <Key>
@@ -549,6 +553,7 @@
           <Property Name="ReceiveCondition_Id" Type="Guid" />
           <NavigationProperty Name="Benefit" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="PromotionDrafts" ToRole="Benefits" />
           <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="PromotionDrafts" ToRole="ReceiveConditions" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Promotion">
           <Key>
@@ -575,6 +580,7 @@
           <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="ReceiveConditions" ToRole="Movies1" />
           <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="PromotionDrafts" />
           <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="Promotions" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Movies_Seanses_Movies_Movies_MovieId">
           <End Role="Movies" Type="DDDCinema.DataAccess.Readonly.Movie" Multiplicity="1">
@@ -909,6 +915,7 @@
           <EntitySetMapping Name="Benefits">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Benefit">
               <MappingFragment StoreEntitySet="Benefits">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Discount_Value" ColumnName="Discount_Value" />
                 <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
@@ -928,6 +935,7 @@
           <EntitySetMapping Name="PromotionDrafts">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.PromotionDraft">
               <MappingFragment StoreEntitySet="PromotionDrafts">
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
@@ -955,6 +963,7 @@
           <EntitySetMapping Name="ReceiveConditions">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.ReceiveCondition">
               <MappingFragment StoreEntitySet="ReceiveConditions">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RequiredCount" ColumnName="RequiredCount" />
                 <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />

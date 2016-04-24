@@ -13,9 +13,10 @@ namespace DDDCinema.Promotions.Benefits
         {
             Require.NotNull(movie, nameof(movie));
             Movie = movie;
-        }
+			Description = "Get a free entrance for " + Movie.Name + " movie";
+		}
 
-        public override void ApplyFor(Visitor visitor, IPromotionCodeGenerator generator)
+		public override void ApplyFor(Visitor visitor, IPromotionCodeGenerator generator)
         {
             generator.GenerateFreeEntryPromoCodeForVisitor(visitor, Movie);
         }

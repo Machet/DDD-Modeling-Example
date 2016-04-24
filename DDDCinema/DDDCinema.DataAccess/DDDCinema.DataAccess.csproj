@@ -62,6 +62,7 @@
     <Compile Include="AuditLogging\AuditLog.cs" />
     <Compile Include="AuditLogging\AuditLogger.cs" />
     <Compile Include="Business\EfAuthenticationRepository.cs" />
+    <Compile Include="Business\EfMovieRepository.cs" />
     <Compile Include="Business\EfPromotionRepository.cs" />
     <Compile Include="Business\EfUserInRoleRepository.cs" />
     <Compile Include="Business\TransactionalCommandHandler.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Presentation\Benefit.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\BenefitDTO.cs" />
     <Compile Include="Presentation\CinemaReadonlyContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

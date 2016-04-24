@@ -14,19 +14,25 @@ namespace DDDCinema.Controllers
 		private readonly ICommandHandler<CreatePromotionCommand> _createPromotionHandler;
 		private readonly ICommandHandler<RenamePromotionCommand> _renamePromotionHandler;
 		private readonly ICommandHandler<SetValidityDatesCommand> _changeDatesHandler;
+		private readonly ICommandHandler<SetBenefitCommand> _changeBenefitHandler;
+		private readonly ICommandHandler<SetConditionCommand> _changeConditionHandler;
 
 		public PromotionController(
-			IPromotionsViewRepository repository, 
-			ICurrentUserProvider userProvider, 
+			IPromotionsViewRepository repository,
+			ICurrentUserProvider userProvider,
 			ICommandHandler<CreatePromotionCommand> createPromotionHandler,
 			ICommandHandler<RenamePromotionCommand> renamePromotionHandler,
-			ICommandHandler<SetValidityDatesCommand> changeDatesHandler)
+			ICommandHandler<SetValidityDatesCommand> changeDatesHandler,
+			ICommandHandler<SetBenefitCommand> changeBenefitHandler,
+			ICommandHandler<SetConditionCommand> changeConditionHandler)
 		{
 			_repository = repository;
 			_userProvider = userProvider;
 			_createPromotionHandler = createPromotionHandler;
 			_renamePromotionHandler = renamePromotionHandler;
 			_changeDatesHandler = changeDatesHandler;
+			_changeBenefitHandler = changeBenefitHandler;
+			_changeConditionHandler = changeConditionHandler;
 		}
 
 		[HttpGet]
@@ -96,6 +102,44 @@ namespace DDDCinema.Controllers
 			}
 
 			_changeDatesHandler.Handle(command);
+
+			return RedirectToAction("Details", new { id = command.PromotionId });
+		}
+
+		[HttpGet]
+		public ActionResult SetBenefit(Guid id)
+		{
+			return View(_repository.GetSetBenefitView(id));
+		}
+
+		[HttpPost]
+		public ActionResult SetBenefit([Bind(Prefix = "Command")]SetBenefitCommand command)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
+			_changeBenefitHandler.Handle(command);
+
+			return RedirectToAction("Details", new { id = command.PromotionId });
+		}
+
+		[HttpGet]
+		public ActionResult SetCondition(Guid id)
+		{
+			return View(_repository.GetSetConditionView(id));
+		}
+
+		[HttpPost]
+		public ActionResult SetCondition([Bind(Prefix = "Command")]SetConditionCommand command)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
+			_changeConditionHandler.Handle(command);
 
 			return RedirectToAction("Details", new { id = command.PromotionId });
 		}

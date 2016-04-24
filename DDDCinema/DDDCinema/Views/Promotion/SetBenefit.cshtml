@@ -1,0 +1,28 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.SetBenefitView
+@{
+    ViewBag.Title = "Set Benefit";
+}
+
+<h2>Set Benefit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Command.PromotionId)
+
+    <div class="radio">
+        <label>
+            @Html.RadioButtonFor(m => m.Command.BenefitType, "FreePremiereEntry") Get a free entrance for premiere movie.
+        </label>
+    </div>
+    <div class="radio">
+        <label>@Html.RadioButtonFor(m => m.Command.BenefitType, "FreeEntry") 
+        Get free entry on @Html.DropDownListFor(m => m.Command.MovieId, new SelectList(Model.AvailableMovies, "Id", "Name"), new { @class = "form-control" })</label>
+        @Html.ValidationMessageFor(m => m.Command.MovieId)
+    </div>
+    <div class="radio">
+        <label>@Html.RadioButtonFor(m => m.Command.BenefitType, "DiscountForEntry") 
+        Get @Html.TextBoxFor(m => m.Command.DiscountPercentage, new { @class = "form-control" }) percent of discount for next entry.</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Set</button>
+    @Html.ActionLink("Cancel", "Details", new { id = Model.Command.PromotionId }, new { @class = "btn btn-default" })
+}

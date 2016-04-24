@@ -25,6 +25,7 @@ namespace DDDCinema.DataAccess.Presentation
         public Nullable<decimal> Discount_Value { get; set; }
         public Nullable<System.Guid> Movie_Id { get; set; }
         public string Type { get; set; }
+        public string Description { get; set; }
     
         public virtual Movies1 Movies1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

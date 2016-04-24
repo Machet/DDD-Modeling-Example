@@ -1,0 +1,17 @@
+﻿@model DDDCinema.Promotions.Commands.RenamePromotionCommand
+
+@{
+    ViewBag.Title = "Rename";
+}
+
+<h2>Rename</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.PromotionId)
+    <div class="form-group">
+        <label>New Name</label>
+        @Html.TextBoxFor(m => m.PromotionName, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Rename</button>
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}

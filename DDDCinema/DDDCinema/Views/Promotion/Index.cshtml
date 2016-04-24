@@ -21,7 +21,7 @@
                 <td>@promotion.Name</td>
                 <td>@promotion.State</td>
                 <td>@promotion.CreationDate</td>
-                <td></td>
+                <td>@Html.ActionLink("Details", "Details", new { id = promotion.PromotionId })</td>
             </tr>
         }
     </table>

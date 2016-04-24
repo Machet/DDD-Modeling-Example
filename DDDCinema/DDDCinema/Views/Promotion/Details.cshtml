@@ -1,0 +1,36 @@
+﻿@model DDDCinema.Presentation.Promotions.PromotionDetailsDTO
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Promotion Details</h2>
+<div class="summary">
+    <div class="summary-row">
+        <label>Name:</label>
+        <span>@Model.Name</span>
+    </div>
+    <div class="summary-row">
+        <label>Valididty Dates:</label>
+        @if (Model.StartDate.HasValue)
+        {
+            <div class="summary-row">
+                <label>From</label><span>@Model.StartDate.Value.ToShortDateString()</span>
+            </div>
+            <div class="summary-row">
+                <label>To</label><span>@Model.EndDate.Value.ToShortDateString()</span>
+            </div>
+        }
+        else
+        {
+            <span>Not Set</span>
+        }
+    </div>
+</div>
+
+<div class="actions">
+    <div class="header">Actions</div>
+    <div class="content">
+        @Html.ActionLink("Change Name", "Rename", new { id = Model.Id })
+        @Html.ActionLink("Change Dates", "SetValidityDates", new { id = Model.Id })
+    </div>
+</div>

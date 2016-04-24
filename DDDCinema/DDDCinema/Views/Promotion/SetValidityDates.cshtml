@@ -1,0 +1,32 @@
+﻿@model DDDCinema.Promotions.Commands.SetValidityDatesCommand
+
+@{
+    ViewBag.Title = "SetValidityDates";
+}
+
+@section Scripts
+{
+    <script>
+        $('#StartDate').datetimepicker({ timepicker: false, format: 'd.m.Y' });
+        $('#EndDate').datetimepicker({ timepicker: false, format: 'd.m.Y' });
+    </script>
+}
+
+<h2>SetValidityDates</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.PromotionId)
+    <div class="form-group">
+        <label>Start Date</label>
+        @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.StartDate)
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.EndDate)
+    </div>
+    <button type="submit" class="btn btn-primary">Set</button>
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}

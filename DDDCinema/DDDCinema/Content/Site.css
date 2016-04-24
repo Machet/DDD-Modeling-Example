@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }
 
+.container{
+    max-width: 970px;
+}
+
 h2 {
     margin-bottom: 30px
 }
@@ -58,4 +62,46 @@ a.disabled {
 }
 .seat button:disabled {
     background-color: #EEEEEE;
+}
+
+.summary {
+    width: 500px;
+    float: left;
+}
+
+.summary label {
+    color: #888;
+    font-weight: normal;
+    display: inline-block;
+    width: 150px;
+}
+
+.summary span {
+    font-weight: bold;
+}
+
+.summary-row .summary-row label {
+    padding-left: 55px;
+}
+
+div.actions {
+    float: right;
+    width: 200px;
+}
+
+div.actions .header {
+    background-color: #3276b1;
+    font-weight: bold;
+    color: white;
+    padding: 5px 20px;
+    border: 1px solid #3276b1;
+}
+
+div.actions .content {
+    padding: 7px 20px;
+    border: 1px solid #DDD;
+}
+
+div.actions a {
+    display: block;
 }

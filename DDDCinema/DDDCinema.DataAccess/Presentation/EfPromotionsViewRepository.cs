@@ -17,6 +17,20 @@ namespace DDDCinema.DataAccess.Presentation
 			_provider = provider;
 		}
 
+		public PromotionDetailsDTO GetPromotionDetails(Guid promotionId)
+		{
+			return _context.PromotionDrafts
+				.Where(pd => pd.Id == promotionId)
+				.Select(pd => new PromotionDetailsDTO
+				{
+					Id = pd.Id,
+					Name = pd.Name,
+					StartDate = pd.ValidityRange.StartDate,
+					EndDate = pd.ValidityRange.EndDate,
+				})
+				.FirstOrDefault();
+		}
+
 		public List<PromotionDraftDTO> GetPromotions(Guid userId)
 		{
 			return _context.PromotionDrafts

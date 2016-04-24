@@ -49,6 +49,8 @@
     <Compile Include="Benefits\FreeEntry.cs" />
     <Compile Include="Benefits\FreePremiereEntry.cs" />
     <Compile Include="Commands\ApprovePromotionDraftCommandHandler.cs" />
+    <Compile Include="Commands\SetValidityDatesCommandHandler.cs" />
+    <Compile Include="Commands\RenamePromotionCommandHandler.cs" />
     <Compile Include="Commands\CreatePromotionCommandHandler.cs" />
     <Compile Include="Granting\ApplyPromotionsWhenMovieWatched.cs" />
     <Compile Include="Movie.cs" />

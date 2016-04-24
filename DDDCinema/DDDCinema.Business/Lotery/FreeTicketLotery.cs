@@ -3,8 +3,8 @@ using System;
 
 namespace DDDCinema.Movies.Lotery
 {
-    // performs lotery for single user
-    internal class FreeTicketLotery
+	// performs lotery for single user
+	public class FreeTicketLotery
     {
         private readonly IWinChanceCalculatorFactory _calculatorFactory;
 

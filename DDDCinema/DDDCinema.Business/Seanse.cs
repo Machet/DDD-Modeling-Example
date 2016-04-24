@@ -21,7 +21,7 @@ namespace DDDCinema.Movies
             get { return StartTime < DomainTime.Current.Now.TimeOfDay; }
         }
 
-        internal void ReserveSeatForUser(Guid userId, Seat seat)
+		public void ReserveSeatForUser(Guid userId, Seat seat)
         {
             if (HasEnded)
             {

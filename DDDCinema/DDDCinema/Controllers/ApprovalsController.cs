@@ -1,7 +1,5 @@
-﻿using DDDCinema.Presentation;
-using DDDCinema.Presentation.Promotions;
-using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using DDDCinema.Application.Presentation.Promotions;
 
 namespace DDDCinema.Controllers
 {

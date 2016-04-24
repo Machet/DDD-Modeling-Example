@@ -2,16 +2,16 @@
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using DDDCinema.Application.Movies;
+using DDDCinema.Application.Promotions;
 using DDDCinema.Common;
 using DDDCinema.DataAccess;
 using DDDCinema.DataAccess.AuditLogging;
 using DDDCinema.DataAccess.Movies;
+using DDDCinema.DataAccess.Presentation;
 using DDDCinema.Movies;
-using DDDCinema.Movies.Authentication;
-using DDDCinema.Movies.Commands;
 using DDDCinema.Movies.Lotery;
 using DDDCinema.Movies.Notifications;
-using DDDCinema.Promotions;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 using SimpleInjector.Integration.Web;
@@ -27,11 +27,12 @@ namespace DDDCinema.CompositionRoot
 			var perRequest = new WebRequestLifestyle();
 			var dataAccessAssembly = typeof(CinemaContext).Assembly;
 			var moviesAssembly = typeof(Seat).Assembly;
-			var promotionsAssembly = typeof(PromotionDraft).Assembly;
+			var applicationAssembly = typeof(RenamePromotionCommand).Assembly;
 			var connectionString = ConfigurationManager.ConnectionStrings["DDDCinema"].ConnectionString;
 
 			container.Register(() => new CinemaContext(connectionString), perRequest);
 			container.Register(() => new PromotionsContext(connectionString), perRequest);
+			container.Register(() => new DDDCinemaReadonly(), perRequest);
 			var userProviderRegistration = Lifestyle.Singleton.CreateRegistration<ContextUserProvider>(container);
 			container.AddRegistration(typeof(ICurrentUserProvider), userProviderRegistration);
 			container.AddRegistration(typeof(ContextUserProvider), userProviderRegistration);
@@ -46,9 +47,9 @@ namespace DDDCinema.CompositionRoot
 			container.RegisterDecorator(typeof(ICommandHandler<LoginCommand>), typeof(AuditingLoginCommandHandler));
 			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(AuditingCommandHandler<>),
 				p => !p.AppliedDecorators.Any(t => t.Name.Contains("Auditing")));
-			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(CinemaTransactionalCommandHandler<>), p => p.ImplementationType.Namespace.Contains("Movies"));
+			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(CinemaTransactionalCommandHandler<>));
 			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(PromotionTransactionalCommandHandler<>), p => p.ImplementationType.Namespace.Contains("Promotions"));
-			container.Register(typeof(ICommandHandler<>), new[] { moviesAssembly, promotionsAssembly });
+			container.Register(typeof(ICommandHandler<>), new[] { applicationAssembly });
 
 			container.RegisterCollection(typeof(INotificationSender), new[] { moviesAssembly });
 			var registration = perRequest.CreateRegistration<SendNotificationWhenSeatTaken>(container);

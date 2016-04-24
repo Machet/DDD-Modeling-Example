@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using DDDCinema.Presentation;
+using DDDCinema.Application.Presentation.Movies;
 
 namespace DDDCinema.Controllers
 {

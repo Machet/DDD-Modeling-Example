@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDCinema.Test", "DDDCinema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDCinema.Common", "DDDCinema.Common\DDDCinema.Common.csproj", "{6803928F-33CC-4BBA-823D-FAC57B03FBFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDCinema.Presentation", "DDDCinema.Presentation\DDDCinema.Presentation.csproj", "{6C205623-6DCA-444C-8252-27A5E209CB2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDCinema.Application", "DDDCinema.Presentation\DDDCinema.Application.csproj", "{6C205623-6DCA-444C-8252-27A5E209CB2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDCinema.Background", "DDDCinema.Background\DDDCinema.Background.csproj", "{E9F2644E-2213-4469-B6B2-A058540F64A1}"
 EndProject

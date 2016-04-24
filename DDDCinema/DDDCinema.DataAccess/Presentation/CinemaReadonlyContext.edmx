@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DDDCinema.DataAccess.Readonly.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChangeTime" Type="datetime" Nullable="false" />
+          <Property Name="Changes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LoginAttempts">
+          <Key>
+            <PropertyRef Name="LoginAttemptId" />
+          </Key>
+          <Property Name="LoginAttemptId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Succeeded" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="UserRole" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MailToSends">
+          <Key>
+            <PropertyRef Name="MailToSendId" />
+          </Key>
+          <Property Name="MailToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="EmailFrom" Type="nvarchar(max)" />
+          <Property Name="EmailTo" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsPremiere" Type="bit" Nullable="false" />
+          <Property Name="Length" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomNumber" Type="int" Nullable="false" />
+          <Property Name="SeatsPerRow" Type="int" Nullable="false" />
+          <Property Name="RowsOfSeats" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seanses">
+          <Key>
+            <PropertyRef Name="SeanseId" />
+          </Key>
+          <Property Name="SeanseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeatAssignments">
+          <Key>
+            <PropertyRef Name="SeatAssignmentId" />
+          </Key>
+          <Property Name="SeatAssignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeanseId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Row" Type="int" Nullable="false" />
+          <Property Name="SeatNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SmsToSends">
+          <Key>
+            <PropertyRef Name="SmsToSendId" />
+          </Key>
+          <Property Name="SmsToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar(max)" />
+          <Property Name="MobilePhone" Type="nvarchar(max)" />
+          <Property Name="ContactByEmailAllowed" Type="bit" Nullable="false" />
+          <Property Name="ContactBySmslAllowed" Type="bit" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="PasswordSalt" Type="nvarchar(max)" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="FreeTicketsCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApprovalProcesses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PromotionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApprovalRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Editor_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Editor_Name" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="ApprovalProcess_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Benefits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Discount_Value" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Movie_Id" Type="uniqueidentifier" />
+          <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="WatchSpecificMovies_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="PromotionDrafts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ValidityRange_StartDate" Type="datetime" />
+          <Property Name="ValidityRange_EndDate" Type="datetime" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Owner_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Owner_Name" Type="nvarchar(max)" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Benefit_Id" Type="uniqueidentifier" />
+          <Property Name="ReceiveCondition_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Promotions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ValidityRange_StartDate" Type="datetime" />
+          <Property Name="ValidityRange_EndDate" Type="datetime" />
+          <Property Name="Benefit_Id" Type="uniqueidentifier" />
+          <Property Name="ReceiveCondition_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ReceiveConditions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RequiredCount" Type="int" />
+          <Property Name="ValidityRange_StartDate" Type="datetime" />
+          <Property Name="ValidityRange_EndDate" Type="datetime" />
+          <Property Name="DayToWatch" Type="datetime" />
+          <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Movies_Seanses_Movies_Movies_MovieId">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seanses" Type="Self.Seanses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Seanses">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_Seanses_Movies_Rooms_RoomId">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seanses" Type="Self.Seanses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seanses">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_SeatAssignments_Movies_Seanses_SeanseId">
+          <End Role="Seanses" Type="Self.Seanses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SeatAssignments" Type="Self.SeatAssignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seanses">
+              <PropertyRef Name="SeanseId" />
+            </Principal>
+            <Dependent Role="SeatAssignments">
+              <PropertyRef Name="SeanseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id">
+          <End Role="ApprovalProcesses" Type="Self.ApprovalProcesses" Multiplicity="0..1" />
+          <End Role="ApprovalRequests" Type="Self.ApprovalRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApprovalRequests">
+              <PropertyRef Name="ApprovalProcess_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
+          <End Role="Movies1" Type="Self.Movies1" Multiplicity="0..1" />
+          <End Role="Benefits" Type="Self.Benefits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Benefits">
+              <PropertyRef Name="Movie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveConditions" Multiplicity="0..1" />
+          <End Role="Movies1" Type="Self.Movies1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movies1">
+              <PropertyRef Name="WatchSpecificMovies_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+          <End Role="Benefits" Type="Self.Benefits" Multiplicity="0..1" />
+          <End Role="PromotionDrafts" Type="Self.PromotionDrafts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDrafts">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveConditions" Multiplicity="0..1" />
+          <End Role="PromotionDrafts" Type="Self.PromotionDrafts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDrafts">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+          <End Role="Benefits" Type="Self.Benefits" Multiplicity="0..1" />
+          <End Role="Promotions" Type="Self.Promotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotions">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveConditions" Multiplicity="0..1" />
+          <End Role="Promotions" Type="Self.Promotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotions">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DDDCinemaDataAccessReadonlyStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="AuditLogs" EntityType="Self.AuditLogs" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="LoginAttempts" EntityType="Self.LoginAttempts" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="MailToSends" EntityType="Self.MailToSends" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="Seanses" EntityType="Self.Seanses" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="SeatAssignments" EntityType="Self.SeatAssignments" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="SmsToSends" EntityType="Self.SmsToSends" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="Movies" store:Type="Tables" />
+          <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcesses" Schema="Promotions" store:Type="Tables" />
+          <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequests" Schema="Promotions" store:Type="Tables" />
+          <EntitySet Name="Benefits" EntityType="Self.Benefits" Schema="Promotions" store:Type="Tables" />
+          <EntitySet Name="Movies1" EntityType="Self.Movies1" Schema="Promotions" Table="Movies" store:Type="Tables" />
+          <EntitySet Name="PromotionDrafts" EntityType="Self.PromotionDrafts" Schema="Promotions" store:Type="Tables" />
+          <EntitySet Name="Promotions" EntityType="Self.Promotions" Schema="Promotions" store:Type="Tables" />
+          <EntitySet Name="ReceiveConditions" EntityType="Self.ReceiveConditions" Schema="Promotions" store:Type="Tables" />
+          <AssociationSet Name="FK_Movies_Seanses_Movies_Movies_MovieId" Association="Self.FK_Movies_Seanses_Movies_Movies_MovieId">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Seanses" EntitySet="Seanses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_Seanses_Movies_Rooms_RoomId" Association="Self.FK_Movies_Seanses_Movies_Rooms_RoomId">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Seanses" EntitySet="Seanses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" Association="Self.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId">
+            <End Role="Seanses" EntitySet="Seanses" />
+            <End Role="SeatAssignments" EntitySet="SeatAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" Association="Self.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id">
+            <End Role="ApprovalProcesses" EntitySet="ApprovalProcesses" />
+            <End Role="ApprovalRequests" EntitySet="ApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id" Association="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
+            <End Role="Movies1" EntitySet="Movies1" />
+            <End Role="Benefits" EntitySet="Benefits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="Movies1" EntitySet="Movies1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefits" EntitySet="Benefits" />
+            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefits" EntitySet="Benefits" />
+            <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DDDCinema.DataAccess.Readonly" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditLogEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ChangeTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Changes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoginAttempt">
+          <Key>
+            <PropertyRef Name="LoginAttemptId" />
+          </Key>
+          <Property Name="LoginAttemptId" Type="Guid" Nullable="false" />
+          <Property Name="Succeeded" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="UserRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MailToSend">
+          <Key>
+            <PropertyRef Name="MailToSendId" />
+          </Key>
+          <Property Name="MailToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPremiere" Type="Boolean" Nullable="false" />
+          <Property Name="Length" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Seanses" Relationship="Self.FK_Movies_Seanses_Movies_Movies_MovieId" FromRole="Movies" ToRole="Seanses" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomNumber" Type="Int32" Nullable="false" />
+          <Property Name="SeatsPerRow" Type="Int32" Nullable="false" />
+          <Property Name="RowsOfSeats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Seanses" Relationship="Self.FK_Movies_Seanses_Movies_Rooms_RoomId" FromRole="Rooms" ToRole="Seanses" />
+        </EntityType>
+        <EntityType Name="Seanse">
+          <Key>
+            <PropertyRef Name="SeanseId" />
+          </Key>
+          <Property Name="SeanseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="Guid" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Movy" Relationship="Self.FK_Movies_Seanses_Movies_Movies_MovieId" FromRole="Seanses" ToRole="Movies" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Movies_Seanses_Movies_Rooms_RoomId" FromRole="Seanses" ToRole="Rooms" />
+          <NavigationProperty Name="SeatAssignments" Relationship="Self.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" FromRole="Seanses" ToRole="SeatAssignments" />
+        </EntityType>
+        <EntityType Name="SeatAssignment">
+          <Key>
+            <PropertyRef Name="SeatAssignmentId" />
+          </Key>
+          <Property Name="SeatAssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeanseId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Row" Type="Int32" Nullable="false" />
+          <Property Name="SeatNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Seans" Relationship="Self.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" FromRole="SeatAssignments" ToRole="Seanses" />
+        </EntityType>
+        <EntityType Name="SmsToSend">
+          <Key>
+            <PropertyRef Name="SmsToSendId" />
+          </Key>
+          <Property Name="SmsToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactByEmailAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="ContactBySmslAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="FreeTicketsCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApprovalProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PromotionId" Type="Guid" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApprovalRequests" Relationship="Self.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" FromRole="ApprovalProcesses" ToRole="ApprovalRequests" />
+        </EntityType>
+        <EntityType Name="ApprovalRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Editor_Id" Type="Guid" Nullable="false" />
+          <Property Name="Editor_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalProcess_Id" Type="Guid" />
+          <NavigationProperty Name="ApprovalProcess" Relationship="Self.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" FromRole="ApprovalRequests" ToRole="ApprovalProcesses" />
+        </EntityType>
+        <EntityType Name="Benefit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Discount_Value" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Movie_Id" Type="Guid" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" FromRole="Benefits" ToRole="Movies1" />
+          <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="PromotionDrafts" />
+          <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="Promotions" />
+        </EntityType>
+        <EntityType Name="Movies1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WatchSpecificMovies_Id" Type="Guid" />
+          <NavigationProperty Name="Benefits" Relationship="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" FromRole="Movies1" ToRole="Benefits" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="Movies1" ToRole="ReceiveConditions" />
+        </EntityType>
+        <EntityType Name="PromotionDraft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Owner_Id" Type="Guid" Nullable="false" />
+          <Property Name="Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Benefit_Id" Type="Guid" />
+          <Property Name="ReceiveCondition_Id" Type="Guid" />
+          <NavigationProperty Name="Benefit" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="PromotionDrafts" ToRole="Benefits" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="PromotionDrafts" ToRole="ReceiveConditions" />
+        </EntityType>
+        <EntityType Name="Promotion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Benefit_Id" Type="Guid" />
+          <Property Name="ReceiveCondition_Id" Type="Guid" />
+          <NavigationProperty Name="Benefit" Relationship="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Promotions" ToRole="Benefits" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="Promotions" ToRole="ReceiveConditions" />
+        </EntityType>
+        <EntityType Name="ReceiveCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RequiredCount" Type="Int32" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="DayToWatch" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="ReceiveConditions" ToRole="Movies1" />
+          <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="PromotionDrafts" />
+          <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="Promotions" />
+        </EntityType>
+        <Association Name="FK_Movies_Seanses_Movies_Movies_MovieId">
+          <End Role="Movies" Type="DDDCinema.DataAccess.Readonly.Movie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seanses" Type="DDDCinema.DataAccess.Readonly.Seanse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Seanses">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_Seanses_Movies_Rooms_RoomId">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seanses" Type="DDDCinema.DataAccess.Readonly.Seanse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seanses">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_SeatAssignments_Movies_Seanses_SeanseId">
+          <End Role="Seanses" Type="DDDCinema.DataAccess.Readonly.Seanse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SeatAssignments" Type="Self.SeatAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seanses">
+              <PropertyRef Name="SeanseId" />
+            </Principal>
+            <Dependent Role="SeatAssignments">
+              <PropertyRef Name="SeanseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id">
+          <End Role="ApprovalProcesses" Type="Self.ApprovalProcess" Multiplicity="0..1" />
+          <End Role="ApprovalRequests" Type="Self.ApprovalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalProcesses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApprovalRequests">
+              <PropertyRef Name="ApprovalProcess_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
+          <End Role="Movies1" Type="Self.Movies1" Multiplicity="0..1" />
+          <End Role="Benefits" Type="Self.Benefit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Benefits">
+              <PropertyRef Name="Movie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+          <End Role="Benefits" Type="Self.Benefit" Multiplicity="0..1" />
+          <End Role="PromotionDrafts" Type="Self.PromotionDraft" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDrafts">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+          <End Role="Benefits" Type="Self.Benefit" Multiplicity="0..1" />
+          <End Role="Promotions" Type="Self.Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotions">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
+          <End Role="Movies1" Type="Self.Movies1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movies1">
+              <PropertyRef Name="WatchSpecificMovies_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
+          <End Role="PromotionDrafts" Type="Self.PromotionDraft" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDrafts">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
+          <End Role="Promotions" Type="Self.Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveConditions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotions">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DDDCinemaReadonly" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AuditLogEntries" EntityType="DDDCinema.DataAccess.Readonly.AuditLogEntry" />
+          <EntitySet Name="LoginAttempts" EntityType="Self.LoginAttempt" />
+          <EntitySet Name="MailToSends" EntityType="Self.MailToSend" />
+          <EntitySet Name="Movies2" EntityType="DDDCinema.DataAccess.Readonly.Movie" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Seanses" EntityType="DDDCinema.DataAccess.Readonly.Seanse" />
+          <EntitySet Name="SeatAssignments" EntityType="Self.SeatAssignment" />
+          <EntitySet Name="SmsToSends" EntityType="Self.SmsToSend" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcess" />
+          <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequest" />
+          <EntitySet Name="Benefits" EntityType="Self.Benefit" />
+          <EntitySet Name="Movies1" EntityType="Self.Movies1" />
+          <EntitySet Name="PromotionDrafts" EntityType="Self.PromotionDraft" />
+          <EntitySet Name="Promotions" EntityType="Self.Promotion" />
+          <EntitySet Name="ReceiveConditions" EntityType="Self.ReceiveCondition" />
+          <AssociationSet Name="FK_Movies_Seanses_Movies_Movies_MovieId" Association="Self.FK_Movies_Seanses_Movies_Movies_MovieId">
+            <End Role="Movies" EntitySet="Movies2" />
+            <End Role="Seanses" EntitySet="Seanses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_Seanses_Movies_Rooms_RoomId" Association="Self.FK_Movies_Seanses_Movies_Rooms_RoomId">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Seanses" EntitySet="Seanses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" Association="Self.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId">
+            <End Role="Seanses" EntitySet="Seanses" />
+            <End Role="SeatAssignments" EntitySet="SeatAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" Association="Self.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id">
+            <End Role="ApprovalProcesses" EntitySet="ApprovalProcesses" />
+            <End Role="ApprovalRequests" EntitySet="ApprovalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id" Association="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
+            <End Role="Movies1" EntitySet="Movies1" />
+            <End Role="Benefits" EntitySet="Benefits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefits" EntitySet="Benefits" />
+            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefits" EntitySet="Benefits" />
+            <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="Movies1" EntitySet="Movies1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
+            <End Role="Promotions" EntitySet="Promotions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DDDCinemaDataAccessReadonlyStoreContainer" CdmEntityContainer="DDDCinemaReadonly">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditLogEntries">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.AuditLogEntry">
+              <MappingFragment StoreEntitySet="AuditLogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ChangeTime" ColumnName="ChangeTime" />
+                <ScalarProperty Name="Changes" ColumnName="Changes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginAttempts">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.LoginAttempt">
+              <MappingFragment StoreEntitySet="LoginAttempts">
+                <ScalarProperty Name="LoginAttemptId" ColumnName="LoginAttemptId" />
+                <ScalarProperty Name="Succeeded" ColumnName="Succeeded" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailToSends">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.MailToSend">
+              <MappingFragment StoreEntitySet="MailToSends">
+                <ScalarProperty Name="MailToSendId" ColumnName="MailToSendId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies2">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Movie">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsPremiere" ColumnName="IsPremiere" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="SeatsPerRow" ColumnName="SeatsPerRow" />
+                <ScalarProperty Name="RowsOfSeats" ColumnName="RowsOfSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seanses">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Seanse">
+              <MappingFragment StoreEntitySet="Seanses">
+                <ScalarProperty Name="SeanseId" ColumnName="SeanseId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeatAssignments">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.SeatAssignment">
+              <MappingFragment StoreEntitySet="SeatAssignments">
+                <ScalarProperty Name="SeatAssignmentId" ColumnName="SeatAssignmentId" />
+                <ScalarProperty Name="SeanseId" ColumnName="SeanseId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmsToSends">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.SmsToSend">
+              <MappingFragment StoreEntitySet="SmsToSends">
+                <ScalarProperty Name="SmsToSendId" ColumnName="SmsToSendId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="ContactByEmailAllowed" ColumnName="ContactByEmailAllowed" />
+                <ScalarProperty Name="ContactBySmslAllowed" ColumnName="ContactBySmslAllowed" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FreeTicketsCount" ColumnName="FreeTicketsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalProcesses">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.ApprovalProcess">
+              <MappingFragment StoreEntitySet="ApprovalProcesses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalRequests">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.ApprovalRequest">
+              <MappingFragment StoreEntitySet="ApprovalRequests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Editor_Id" ColumnName="Editor_Id" />
+                <ScalarProperty Name="Editor_Name" ColumnName="Editor_Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ApprovalProcess_Id" ColumnName="ApprovalProcess_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Benefits">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Benefit">
+              <MappingFragment StoreEntitySet="Benefits">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Discount_Value" ColumnName="Discount_Value" />
+                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies1">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Movies1">
+              <MappingFragment StoreEntitySet="Movies1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WatchSpecificMovies_Id" ColumnName="WatchSpecificMovies_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromotionDrafts">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.PromotionDraft">
+              <MappingFragment StoreEntitySet="PromotionDrafts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
+                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
+                <ScalarProperty Name="ReceiveCondition_Id" ColumnName="ReceiveCondition_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promotions">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Promotion">
+              <MappingFragment StoreEntitySet="Promotions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
+                <ScalarProperty Name="ReceiveCondition_Id" ColumnName="ReceiveCondition_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiveConditions">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.ReceiveCondition">
+              <MappingFragment StoreEntitySet="ReceiveConditions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequiredCount" ColumnName="RequiredCount" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="DayToWatch" ColumnName="DayToWatch" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
+using DDDCinema.Application.Movies;
+using DDDCinema.Application.Presentation.Authentication;
 using DDDCinema.Common;
 using DDDCinema.CompositionRoot;
-using DDDCinema.Movies.Commands;
-using DDDCinema.Presentation;
 
 namespace DDDCinema.Controllers
 {

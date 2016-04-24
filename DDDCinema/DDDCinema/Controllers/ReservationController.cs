@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using DDDCinema.Application.Movies;
 using DDDCinema.Common;
-using DDDCinema.Movies.Commands;
 
 namespace DDDCinema.Controllers
 {

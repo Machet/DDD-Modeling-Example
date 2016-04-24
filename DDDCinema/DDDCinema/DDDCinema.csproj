@@ -220,9 +220,9 @@
       <Project>{f00ab9ca-1ac2-45e0-90f1-279b028986e6}</Project>
       <Name>DDDCinema.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DDDCinema.Presentation\DDDCinema.Presentation.csproj">
+    <ProjectReference Include="..\DDDCinema.Presentation\DDDCinema.Application.csproj">
       <Project>{6c205623-6dca-444c-8252-27a5e209cb2d}</Project>
-      <Name>DDDCinema.Presentation</Name>
+      <Name>DDDCinema.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDDCinema.Promotions\DDDCinema.Promotions.csproj">
       <Project>{42c0a977-291c-410c-a3c5-2b8402651678}</Project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f919d3f02c3341188f00b6c4908904c3" Name="Diagram1">
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.AuditLogEntry" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.LoginAttempt" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.MailToSend" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Movie" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Room" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Seanse" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.SeatAssignment" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.SmsToSend" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.User" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalProcess" Width="1.5" PointX="7.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalRequest" Width="1.5" PointX="10" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Benefit" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Movies1" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.PromotionDraft" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Promotion" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ReceiveCondition" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_Seanses_Movies_Movies_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_Seanses_Movies_Rooms_RoomId" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

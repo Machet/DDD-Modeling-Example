@@ -1,7 +1,7 @@
-﻿using DDDCinema.Presentation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DDDCinema.Application.Presentation.Audit;
 
 namespace DDDCinema.DataAccess.Presentation
 {

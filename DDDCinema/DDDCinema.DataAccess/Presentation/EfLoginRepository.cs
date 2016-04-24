@@ -1,6 +1,6 @@
-﻿using DDDCinema.Presentation;
-using System;
+﻿using System;
 using System.Linq;
+using DDDCinema.Application.Presentation.Authentication;
 
 namespace DDDCinema.DataAccess.Presentation
 {

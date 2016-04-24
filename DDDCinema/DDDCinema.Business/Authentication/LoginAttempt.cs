@@ -11,7 +11,7 @@ namespace DDDCinema.Movies.Authentication
 		public string Message { get; set; }
         public DateTime Time { get; set; }
 
-        internal static LoginAttempt Failed(Guid id, string message)
+        public static LoginAttempt Failed(Guid id, string message)
         {
             return new LoginAttempt
             {
@@ -23,7 +23,7 @@ namespace DDDCinema.Movies.Authentication
             };
         }
 
-        internal static LoginAttempt Failed(Guid id, string message, User user)
+		public static LoginAttempt Failed(Guid id, string message, User user)
         {
             return new LoginAttempt
             {
@@ -36,7 +36,7 @@ namespace DDDCinema.Movies.Authentication
             };
         }
 
-        internal static LoginAttempt Successful(Guid id, User user)
+		public static LoginAttempt Successful(Guid id, User user)
         {
             return new LoginAttempt
             {

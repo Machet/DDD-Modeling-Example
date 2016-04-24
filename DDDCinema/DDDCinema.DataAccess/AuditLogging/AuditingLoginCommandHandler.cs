@@ -1,5 +1,5 @@
-﻿using DDDCinema.Common;
-using DDDCinema.Movies.Commands;
+﻿using DDDCinema.Application.Movies;
+using DDDCinema.Common;
 
 namespace DDDCinema.DataAccess.AuditLogging
 {

@@ -43,6 +43,10 @@
         <label>Benefit:</label>
         <span>@(string.IsNullOrEmpty(Model.Benefit) ? "Not set" : Model.Benefit)</span>
     </div>
+    <div class="summary-row">
+        <label>Limit:</label>
+        <span>@(!Model.Limit.HasValue ? "None" : Model.Limit.Value.ToString())</span>
+    </div>
 </div>
 
 @if (Model.IsOwner && (Model.State == DraftState.New || Model.State == DraftState.FixesRequired))
@@ -54,6 +58,7 @@
         @Html.ActionLink("Change Dates", "SetValidityDates", new { id = Model.Id })
         @Html.ActionLink("Change Receive Condition", "SetCondition", new { id = Model.Id })
         @Html.ActionLink("Change Benefit", "SetBenefit", new { id = Model.Id })
+        @Html.ActionLink("Set Limit", "SetLimit", new { id = Model.Id })
         @if (Model.IsComplete) 
         {
             @Html.ActionLink("Mark as complete", "MarkAsComplete", new { id = Model.Id })

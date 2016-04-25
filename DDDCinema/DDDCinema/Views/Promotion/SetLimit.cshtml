@@ -1,0 +1,18 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.PromotionLimitDTO
+@{
+    ViewBag.Title = "Set Limit";
+}
+
+<h2>Set Limit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.PromotionId)
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.Limit, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Set</button>
+    @Html.ActionLink("Cancel", "Details", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
+}

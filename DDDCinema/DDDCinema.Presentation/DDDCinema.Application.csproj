@@ -64,6 +64,7 @@
     <Compile Include="Presentation\Movies\RoomDTO.cs" />
     <Compile Include="Presentation\Movies\SeanseDTO.cs" />
     <Compile Include="Presentation\Movies\SeatDTO.cs" />
+    <Compile Include="Presentation\Promotions\PromotionLimitDTO.cs" />
     <Compile Include="Presentation\Promotions\SetBenefitView.cs" />
     <Compile Include="Presentation\Promotions\SetConditionView.cs" />
     <Compile Include="Promotions\ApprovePromotionDraftCommandHandler.cs" />

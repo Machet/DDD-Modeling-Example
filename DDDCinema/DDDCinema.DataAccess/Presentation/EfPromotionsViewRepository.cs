@@ -49,6 +49,18 @@ namespace DDDCinema.DataAccess.Presentation
 				.FirstOrDefault();
 		}
 
+		public PromotionLimitDTO GetPromotionLimit(Guid promotionId)
+		{
+			return _context.PromotionDrafts
+				.Where(pd => pd.Id == promotionId)
+				.Select(pd => new PromotionLimitDTO
+				{
+					PromotionId = promotionId,
+					Limit = null
+				})
+				.FirstOrDefault();
+		}
+
 		public List<PromotionDraftDTO> GetPromotions(Guid userId)
 		{
 			return _context.PromotionDrafts

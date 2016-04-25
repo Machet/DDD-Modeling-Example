@@ -200,6 +200,7 @@
     <Content Include="Views\Approvals\Index.cshtml" />
     <Content Include="Views\Approvals\Approve.cshtml" />
     <Content Include="Views\Approvals\Reject.cshtml" />
+    <Content Include="Views\Promotion\SetLimit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

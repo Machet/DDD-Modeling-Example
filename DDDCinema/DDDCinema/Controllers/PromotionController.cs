@@ -148,6 +148,23 @@ namespace DDDCinema.Controllers
 		}
 
 		[HttpGet]
+		public ActionResult SetLimit(Guid id)
+		{
+			return View(_repository.GetPromotionLimit(id));
+		}
+
+		[HttpPost]
+		public ActionResult SetLimit(Guid id, int? limit)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
+			return RedirectToAction("Details", new { id = id });
+		}
+
+		[HttpGet]
 		public ActionResult MarkAsComplete(Guid id)
 		{
 			return View(_repository.GetPromotionName(id));

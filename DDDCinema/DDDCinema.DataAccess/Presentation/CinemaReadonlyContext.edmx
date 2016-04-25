@@ -141,15 +141,15 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Discount_Value" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Movie_Id" Type="uniqueidentifier" />
+          <Property Name="Movie_Name" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
-        <EntityType Name="Movies1">
+        <EntityType Name="MoviesToWatch">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="MovieId" />
           </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="WatchSpecificMovies_Id" Type="uniqueidentifier" />
+          <Property Name="MovieId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WatchSpecificMovies_Id" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="PromotionDrafts">
           <Key>
@@ -243,26 +243,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
-          <End Role="Movies1" Type="Self.Movies1" Multiplicity="0..1" />
-          <End Role="Benefits" Type="Self.Benefits" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movies1">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Benefits">
-              <PropertyRef Name="Movie_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
-          <End Role="ReceiveConditions" Type="Self.ReceiveConditions" Multiplicity="0..1" />
-          <End Role="Movies1" Type="Self.Movies1" Multiplicity="*" />
+        <Association Name="FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+          <End Role="ReceiveConditions" Type="Self.ReceiveConditions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MoviesToWatch" Type="Self.MoviesToWatch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ReceiveConditions">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Movies1">
+            <Dependent Role="MoviesToWatch">
               <PropertyRef Name="WatchSpecificMovies_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -329,7 +319,7 @@
           <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcesses" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequests" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="Benefits" EntityType="Self.Benefits" Schema="Promotions" store:Type="Tables" />
-          <EntitySet Name="Movies1" EntityType="Self.Movies1" Schema="Promotions" Table="Movies" store:Type="Tables" />
+          <EntitySet Name="MoviesToWatch" EntityType="Self.MoviesToWatch" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="PromotionDrafts" EntityType="Self.PromotionDrafts" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="Promotions" EntityType="Self.Promotions" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="ReceiveConditions" EntityType="Self.ReceiveConditions" Schema="Promotions" store:Type="Tables" />
@@ -349,13 +339,9 @@
             <End Role="ApprovalProcesses" EntitySet="ApprovalProcesses" />
             <End Role="ApprovalRequests" EntitySet="ApprovalRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id" Association="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
-            <End Role="Movies1" EntitySet="Movies1" />
-            <End Role="Benefits" EntitySet="Benefits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+          <AssociationSet Name="FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="Self.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
             <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
-            <End Role="Movies1" EntitySet="Movies1" />
+            <End Role="MoviesToWatch" EntitySet="MoviesToWatch" />
           </AssociationSet>
           <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
             <End Role="Benefits" EntitySet="Benefits" />
@@ -514,74 +500,6 @@
           <Property Name="ApprovalProcess_Id" Type="Guid" />
           <NavigationProperty Name="ApprovalProcess" Relationship="Self.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" FromRole="ApprovalRequests" ToRole="ApprovalProcesses" />
         </EntityType>
-        <EntityType Name="Benefit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Discount_Value" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Movie_Id" Type="Guid" />
-          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" FromRole="Benefits" ToRole="Movies1" />
-          <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="PromotionDrafts" />
-          <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Benefits" ToRole="Promotions" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Movies1">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="WatchSpecificMovies_Id" Type="Guid" />
-          <NavigationProperty Name="Benefits" Relationship="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" FromRole="Movies1" ToRole="Benefits" />
-          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="Movies1" ToRole="ReceiveConditions" />
-        </EntityType>
-        <EntityType Name="PromotionDraft">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
-          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
-          <Property Name="State" Type="Int32" Nullable="false" />
-          <Property Name="Owner_Id" Type="Guid" Nullable="false" />
-          <Property Name="Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Benefit_Id" Type="Guid" />
-          <Property Name="ReceiveCondition_Id" Type="Guid" />
-          <NavigationProperty Name="Benefit" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="PromotionDrafts" ToRole="Benefits" />
-          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="PromotionDrafts" ToRole="ReceiveConditions" />
-          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Promotion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
-          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Benefit_Id" Type="Guid" />
-          <Property Name="ReceiveCondition_Id" Type="Guid" />
-          <NavigationProperty Name="Benefit" Relationship="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Promotions" ToRole="Benefits" />
-          <NavigationProperty Name="ReceiveCondition" Relationship="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="Promotions" ToRole="ReceiveConditions" />
-        </EntityType>
-        <EntityType Name="ReceiveCondition">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="RequiredCount" Type="Int32" />
-          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
-          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
-          <Property Name="DayToWatch" Type="DateTime" Precision="3" />
-          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Movies1" Relationship="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="ReceiveConditions" ToRole="Movies1" />
-          <NavigationProperty Name="PromotionDrafts" Relationship="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="PromotionDrafts" />
-          <NavigationProperty Name="Promotions" Relationship="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveConditions" ToRole="Promotions" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Movies_Seanses_Movies_Movies_MovieId">
           <End Role="Movies" Type="DDDCinema.DataAccess.Readonly.Movie" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -636,78 +554,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
-          <End Role="Movies1" Type="Self.Movies1" Multiplicity="0..1" />
-          <End Role="Benefits" Type="Self.Benefit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movies1">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Benefits">
-              <PropertyRef Name="Movie_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
-          <End Role="Benefits" Type="Self.Benefit" Multiplicity="0..1" />
-          <End Role="PromotionDrafts" Type="Self.PromotionDraft" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Benefits">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PromotionDrafts">
-              <PropertyRef Name="Benefit_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
-          <End Role="Benefits" Type="Self.Benefit" Multiplicity="0..1" />
-          <End Role="Promotions" Type="Self.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Benefits">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Promotions">
-              <PropertyRef Name="Benefit_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
-          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
-          <End Role="Movies1" Type="Self.Movies1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReceiveConditions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Movies1">
-              <PropertyRef Name="WatchSpecificMovies_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
-          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
-          <End Role="PromotionDrafts" Type="Self.PromotionDraft" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReceiveConditions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PromotionDrafts">
-              <PropertyRef Name="ReceiveCondition_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
-          <End Role="ReceiveConditions" Type="Self.ReceiveCondition" Multiplicity="0..1" />
-          <End Role="Promotions" Type="Self.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReceiveConditions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Promotions">
-              <PropertyRef Name="ReceiveCondition_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DDDCinemaReadonly" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AuditLogEntries" EntityType="DDDCinema.DataAccess.Readonly.AuditLogEntry" />
@@ -721,11 +567,6 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcess" />
           <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequest" />
-          <EntitySet Name="Benefits" EntityType="Self.Benefit" />
-          <EntitySet Name="Movies1" EntityType="Self.Movies1" />
-          <EntitySet Name="PromotionDrafts" EntityType="Self.PromotionDraft" />
-          <EntitySet Name="Promotions" EntityType="Self.Promotion" />
-          <EntitySet Name="ReceiveConditions" EntityType="Self.ReceiveCondition" />
           <AssociationSet Name="FK_Movies_Seanses_Movies_Movies_MovieId" Association="Self.FK_Movies_Seanses_Movies_Movies_MovieId">
             <End Role="Movies" EntitySet="Movies2" />
             <End Role="Seanses" EntitySet="Seanses" />
@@ -742,32 +583,161 @@
             <End Role="ApprovalProcesses" EntitySet="ApprovalProcesses" />
             <End Role="ApprovalRequests" EntitySet="ApprovalRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Benefits_Promotions_Movies_Movie_Id" Association="Self.FK_Promotions_Benefits_Promotions_Movies_Movie_Id">
-            <End Role="Movies1" EntitySet="Movies1" />
-            <End Role="Benefits" EntitySet="Benefits" />
+          <EntitySet Name="Benefits" EntityType="DDDCinema.DataAccess.Readonly.Benefit" />
+          <EntitySet Name="MoviesToWatches" EntityType="DDDCinema.DataAccess.Readonly.MoviesToWatch" />
+          <EntitySet Name="PromotionDrafts" EntityType="DDDCinema.DataAccess.Readonly.PromotionDraft" />
+          <EntitySet Name="Promotions" EntityType="DDDCinema.DataAccess.Readonly.Promotion" />
+          <EntitySet Name="ReceiveConditions" EntityType="DDDCinema.DataAccess.Readonly.ReceiveCondition" />
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefit" EntitySet="Benefits" />
+            <End Role="PromotionDraft" EntitySet="PromotionDrafts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
-            <End Role="Benefits" EntitySet="Benefits" />
-            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+            <End Role="Benefit" EntitySet="Benefits" />
+            <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" Association="Self.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
-            <End Role="Benefits" EntitySet="Benefits" />
-            <End Role="Promotions" EntitySet="Promotions" />
+          <AssociationSet Name="FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="DDDCinema.DataAccess.Readonly.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+            <End Role="ReceiveCondition" EntitySet="ReceiveConditions" />
+            <End Role="MoviesToWatch" EntitySet="MoviesToWatches" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" Association="Self.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
-            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
-            <End Role="Movies1" EntitySet="Movies1" />
+          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveCondition" EntitySet="ReceiveConditions" />
+            <End Role="PromotionDraft" EntitySet="PromotionDrafts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
-            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
-            <End Role="PromotionDrafts" EntitySet="PromotionDrafts" />
+          <AssociationSet Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+            <End Role="ReceiveCondition" EntitySet="ReceiveConditions" />
+            <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" Association="Self.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
-            <End Role="ReceiveConditions" EntitySet="ReceiveConditions" />
-            <End Role="Promotions" EntitySet="Promotions" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        <EntityType Name="Benefit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount_Value" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Movie_Id" Type="Guid" />
+          <Property Name="Movie_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PromotionDrafts" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="Benefit" ToRole="PromotionDraft" />
+          <NavigationProperty Name="Promotions" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Benefit" ToRole="Promotion" />
+        </EntityType>
+        <EntityType Name="MoviesToWatch">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="Guid" Nullable="false" />
+          <Property Name="WatchSpecificMovies_Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="MoviesToWatch" ToRole="ReceiveCondition" />
+        </EntityType>
+        <EntityType Name="PromotionDraft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Owner_Id" Type="Guid" Nullable="false" />
+          <Property Name="Owner_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+          <Property Name="Benefit_Id" Type="Guid" />
+          <Property Name="ReceiveCondition_Id" Type="Guid" />
+          <NavigationProperty Name="Benefit" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" FromRole="PromotionDraft" ToRole="Benefit" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="PromotionDraft" ToRole="ReceiveCondition" />
+        </EntityType>
+        <EntityType Name="Promotion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Benefit_Id" Type="Guid" />
+          <Property Name="ReceiveCondition_Id" Type="Guid" />
+          <NavigationProperty Name="Benefit" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" FromRole="Promotion" ToRole="Benefit" />
+          <NavigationProperty Name="ReceiveCondition" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="Promotion" ToRole="ReceiveCondition" />
+        </EntityType>
+        <EntityType Name="ReceiveCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequiredCount" Type="Int32" />
+          <Property Name="ValidityRange_StartDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidityRange_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="DayToWatch" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MoviesToWatches" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" FromRole="ReceiveCondition" ToRole="MoviesToWatch" />
+          <NavigationProperty Name="PromotionDrafts" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveCondition" ToRole="PromotionDraft" />
+          <NavigationProperty Name="Promotions" Relationship="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" FromRole="ReceiveCondition" ToRole="Promotion" />
+        </EntityType>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id">
+          <End Type="DDDCinema.DataAccess.Readonly.Benefit" Role="Benefit" Multiplicity="0..1" />
+          <End Type="DDDCinema.DataAccess.Readonly.PromotionDraft" Role="PromotionDraft" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDraft">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id">
+          <End Type="DDDCinema.DataAccess.Readonly.Benefit" Role="Benefit" Multiplicity="0..1" />
+          <End Type="DDDCinema.DataAccess.Readonly.Promotion" Role="Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benefit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="Benefit_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id">
+          <End Type="DDDCinema.DataAccess.Readonly.ReceiveCondition" Role="ReceiveCondition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DDDCinema.DataAccess.Readonly.MoviesToWatch" Role="MoviesToWatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MoviesToWatch">
+              <PropertyRef Name="WatchSpecificMovies_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Type="DDDCinema.DataAccess.Readonly.ReceiveCondition" Role="ReceiveCondition" Multiplicity="0..1" />
+          <End Type="DDDCinema.DataAccess.Readonly.PromotionDraft" Role="PromotionDraft" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PromotionDraft">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id">
+          <End Type="DDDCinema.DataAccess.Readonly.ReceiveCondition" Role="ReceiveCondition" Multiplicity="0..1" />
+          <End Type="DDDCinema.DataAccess.Readonly.Promotion" Role="Promotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiveCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promotion">
+              <PropertyRef Name="ReceiveCondition_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -915,65 +885,65 @@
           <EntitySetMapping Name="Benefits">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Benefit">
               <MappingFragment StoreEntitySet="Benefits">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Movie_Name" ColumnName="Movie_Name" />
+                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+                <ScalarProperty Name="Discount_Value" ColumnName="Discount_Value" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Discount_Value" ColumnName="Discount_Value" />
-                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Movies1">
-            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Movies1">
-              <MappingFragment StoreEntitySet="Movies1">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="MoviesToWatches">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.MoviesToWatch">
+              <MappingFragment StoreEntitySet="MoviesToWatch">
                 <ScalarProperty Name="WatchSpecificMovies_Id" ColumnName="WatchSpecificMovies_Id" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PromotionDrafts">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.PromotionDraft">
               <MappingFragment StoreEntitySet="PromotionDrafts">
-                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
-                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
-                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
                 <ScalarProperty Name="ReceiveCondition_Id" ColumnName="ReceiveCondition_Id" />
+                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+                <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Promotions">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.Promotion">
               <MappingFragment StoreEntitySet="Promotions">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
-                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
-                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
                 <ScalarProperty Name="ReceiveCondition_Id" ColumnName="ReceiveCondition_Id" />
+                <ScalarProperty Name="Benefit_Id" ColumnName="Benefit_Id" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReceiveConditions">
             <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.ReceiveCondition">
               <MappingFragment StoreEntitySet="ReceiveConditions">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DayToWatch" ColumnName="DayToWatch" />
+                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
+                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
+                <ScalarProperty Name="RequiredCount" ColumnName="RequiredCount" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RequiredCount" ColumnName="RequiredCount" />
-                <ScalarProperty Name="ValidityRange_StartDate" ColumnName="ValidityRange_StartDate" />
-                <ScalarProperty Name="ValidityRange_EndDate" ColumnName="ValidityRange_EndDate" />
-                <ScalarProperty Name="DayToWatch" ColumnName="DayToWatch" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

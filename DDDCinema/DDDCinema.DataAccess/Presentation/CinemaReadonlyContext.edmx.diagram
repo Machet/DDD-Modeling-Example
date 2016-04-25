@@ -17,22 +17,21 @@
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.User" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalProcess" Width="1.5" PointX="7.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalRequest" Width="1.5" PointX="10" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Benefit" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Movies1" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.PromotionDraft" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Promotion" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ReceiveCondition" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_Seanses_Movies_Movies_MovieId" ManuallyRouted="false" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_Seanses_Movies_Rooms_RoomId" ManuallyRouted="false" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" ManuallyRouted="false" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_ApprovalRequests_Promotions_ApprovalProcesses_ApprovalProcess_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Benefits_Promotions_Movies_Movie_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Movies_Promotions_ReceiveConditions_WatchSpecificMovies_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Benefit" Width="1.5" PointX="16.375" PointY="0.5" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.MoviesToWatch" Width="1.5" PointX="15.625" PointY="12.375" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.PromotionDraft" Width="1.5" PointX="18.625" PointY="4" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Promotion" Width="1.5" PointX="15.625" PointY="4.625" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ReceiveCondition" Width="1.5" PointX="13.375" PointY="4.25" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_Benefits_Benefit_Id" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_Benefits_Benefit_Id" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" />
+        <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

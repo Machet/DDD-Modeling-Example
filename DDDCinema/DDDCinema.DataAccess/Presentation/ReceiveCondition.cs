@@ -17,21 +17,21 @@ namespace DDDCinema.DataAccess.Presentation
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReceiveCondition()
         {
-            this.Movies1 = new HashSet<Movies1>();
+            this.MoviesToWatches = new HashSet<MoviesToWatch>();
             this.PromotionDrafts = new HashSet<PromotionDraft>();
             this.Promotions = new HashSet<Promotion>();
         }
     
         public System.Guid Id { get; set; }
+        public string Description { get; set; }
         public Nullable<int> RequiredCount { get; set; }
         public Nullable<System.DateTime> ValidityRange_StartDate { get; set; }
         public Nullable<System.DateTime> ValidityRange_EndDate { get; set; }
         public Nullable<System.DateTime> DayToWatch { get; set; }
         public string Type { get; set; }
-        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movies1> Movies1 { get; set; }
+        public virtual ICollection<MoviesToWatch> MoviesToWatches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PromotionDraft> PromotionDrafts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

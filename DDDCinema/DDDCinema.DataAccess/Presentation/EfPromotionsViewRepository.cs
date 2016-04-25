@@ -18,6 +18,16 @@ namespace DDDCinema.DataAccess.Presentation
 			_provider = provider;
 		}
 
+		public PromotionDraftNameDTO GetPromotionName(Guid promotionDraftId)
+		{
+			return _context.PromotionDrafts
+				.Select(d => new PromotionDraftNameDTO
+				{
+					Name = d.Name,
+					PromotionId = d.Id
+				}).FirstOrDefault(d => d.PromotionId == promotionDraftId);
+		}
+
 		public PromotionDetailsDTO GetPromotionDetails(Guid promotionId)
 		{
 			return _context.PromotionDrafts
@@ -29,7 +39,8 @@ namespace DDDCinema.DataAccess.Presentation
 					StartDate = pd.ValidityRange_StartDate,
 					EndDate = pd.ValidityRange_EndDate,
 					Condition = pd.ReceiveCondition.Description,
-					Benefit = pd.Benefit.Description
+					Benefit = pd.Benefit.Description,
+					IsComplete = pd.IsComplete
 				})
 				.FirstOrDefault();
 		}
@@ -43,7 +54,8 @@ namespace DDDCinema.DataAccess.Presentation
 					PromotionId = p.Id,
 					Name = p.Name,
 					State = p.State.ToString(),
-					CreationDate = p.CreationDate
+					CreationDate = p.CreationDate,
+					IsComplete = p.IsComplete
 				}).ToList();
 		}
 
@@ -85,7 +97,7 @@ namespace DDDCinema.DataAccess.Presentation
 					PremierePeriodStart = pd.ReceiveCondition.ValidityRange_StartDate,
 					PremierePeriodEnd = pd.ReceiveCondition.ValidityRange_EndDate,
 					PremireWatchCount = pd.ReceiveCondition.RequiredCount,
-					MoviesToWatch = pd.ReceiveCondition.Movies1.Select(m => m.Id).ToList()
+					MoviesToWatch = pd.ReceiveCondition.MoviesToWatches.Select(m => m.MovieId).ToList()
 				})
 				.FirstOrDefault();
 

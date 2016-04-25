@@ -16,15 +16,17 @@ namespace DDDCinema.Controllers
 		private readonly ICommandHandler<SetValidityDatesCommand> _changeDatesHandler;
 		private readonly ICommandHandler<SetBenefitCommand> _changeBenefitHandler;
 		private readonly ICommandHandler<SetConditionCommand> _changeConditionHandler;
+		private readonly ICommandHandler<MarkPromotionAsReadyCommand> _markAsReadyHandler;
 
-		public PromotionController(
+        public PromotionController(
 			IPromotionsViewRepository repository,
 			ICurrentUserProvider userProvider,
 			ICommandHandler<CreatePromotionCommand> createPromotionHandler,
 			ICommandHandler<RenamePromotionCommand> renamePromotionHandler,
 			ICommandHandler<SetValidityDatesCommand> changeDatesHandler,
 			ICommandHandler<SetBenefitCommand> changeBenefitHandler,
-			ICommandHandler<SetConditionCommand> changeConditionHandler)
+			ICommandHandler<SetConditionCommand> changeConditionHandler,
+			ICommandHandler<MarkPromotionAsReadyCommand> markAsReadyHandler)
 		{
 			_repository = repository;
 			_userProvider = userProvider;
@@ -33,6 +35,7 @@ namespace DDDCinema.Controllers
 			_changeDatesHandler = changeDatesHandler;
 			_changeBenefitHandler = changeBenefitHandler;
 			_changeConditionHandler = changeConditionHandler;
+			_markAsReadyHandler = markAsReadyHandler;
 		}
 
 		[HttpGet]
@@ -142,6 +145,24 @@ namespace DDDCinema.Controllers
 			_changeConditionHandler.Handle(command);
 
 			return RedirectToAction("Details", new { id = command.PromotionId });
+		}
+
+		[HttpGet]
+		public ActionResult MarkAsComplete(Guid id)
+		{
+			return View(_repository.GetPromotionName(id));
+		}
+
+		[HttpPost]
+		public ActionResult MarkAsComplete(MarkPromotionAsReadyCommand command)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
+			_markAsReadyHandler.Handle(command);
+			return RedirectToAction("Index");
 		}
 	}
 }

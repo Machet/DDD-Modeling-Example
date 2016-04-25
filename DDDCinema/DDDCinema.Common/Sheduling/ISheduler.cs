@@ -4,6 +4,6 @@ namespace DDDCinema.Common
 {
     public interface ISheduler
     {
-        void RequestTimeout<T>(T approvalProcessTimeout, TimeSpan afterTime);
+        void RequestTimeout<T>(T timeout, TimeSpan afterTime);
     }
 }

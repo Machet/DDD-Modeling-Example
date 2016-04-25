@@ -49,6 +49,7 @@
     <Compile Include="Benefits\FreeEntry.cs" />
     <Compile Include="Benefits\FreePremiereEntry.cs" />
     <Compile Include="Granting\ApplyPromotionsWhenMovieWatched.cs" />
+    <Compile Include="IMovieRepository.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="Percentage.cs" />
     <Compile Include="Granting\IPromotionCodeGenerator.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiveCondition.cs" />
     <Compile Include="ReceiveConditions\GoToPremiere.cs" />
+    <Compile Include="ReceiveConditions\MovieToWatch.cs" />
     <Compile Include="ReceiveConditions\WatchAtSpecificDay.cs" />
     <Compile Include="ReceiveConditions\WatchSpecificMovies.cs" />
     <Compile Include="Granting\IVisitorHistoryRepository.cs" />

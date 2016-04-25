@@ -8,5 +8,6 @@ namespace DDDCinema.Application.Presentation.Promotions
         public string Name { get; set; }
 		public string State { get; set; }
         public DateTime CreationDate { get; set; }
-    }
+		public bool IsComplete { get; set; }
+	}
 }

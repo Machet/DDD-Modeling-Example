@@ -9,6 +9,7 @@ using DDDCinema.DataAccess;
 using DDDCinema.DataAccess.AuditLogging;
 using DDDCinema.DataAccess.Movies;
 using DDDCinema.DataAccess.Presentation;
+using DDDCinema.DataAccess.Sheduling;
 using DDDCinema.Movies;
 using DDDCinema.Movies.Lotery;
 using DDDCinema.Movies.Notifications;
@@ -27,11 +28,13 @@ namespace DDDCinema.CompositionRoot
 			var perRequest = new WebRequestLifestyle();
 			var dataAccessAssembly = typeof(CinemaContext).Assembly;
 			var moviesAssembly = typeof(Seat).Assembly;
+			var promotionsAssembly = typeof(Promotions.Promotion).Assembly;
 			var applicationAssembly = typeof(RenamePromotionCommand).Assembly;
 			var connectionString = ConfigurationManager.ConnectionStrings["DDDCinema"].ConnectionString;
 
 			container.Register(() => new CinemaContext(connectionString), perRequest);
 			container.Register(() => new PromotionsContext(connectionString), perRequest);
+			container.Register(() => new InfrastructureContext(connectionString), perRequest);
 			container.Register(() => new DDDCinemaReadonly(), perRequest);
 			var userProviderRegistration = Lifestyle.Singleton.CreateRegistration<ContextUserProvider>(container);
 			container.AddRegistration(typeof(ICurrentUserProvider), userProviderRegistration);
@@ -54,14 +57,20 @@ namespace DDDCinema.CompositionRoot
 			container.RegisterCollection(typeof(INotificationSender), new[] { moviesAssembly });
 			var registration = perRequest.CreateRegistration<SendNotificationWhenSeatTaken>(container);
 			container.AppendToCollection(typeof(IDomainEventHandler<>), typeof(AuditOccurrenceEventHandler<>));
-			container.RegisterCollection(typeof(IDomainEventHandler<>), new[] { registration });
+			container.RegisterCollection(typeof(IDomainEventHandler<>), moviesAssembly, promotionsAssembly);
 			container.RegisterDecorator(typeof(IDomainEventHandler<>), typeof(AuditingEventHandler<>),
 				p => !p.ImplementationType.Name.Contains("Audit"));
 
 
 			container.Register<List<INotificationSender>>(() => container.GetAllInstances<INotificationSender>().ToList(), perRequest);
+			container.Register<ISheduler, SagaTimeoutSheduler>(perRequest);
 			DomainEventBus.Current = new SimpleInjectorEventBus(container);
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+
+			// TEMP initializing databases
+			using (new CinemaContext(connectionString))
+			using (new PromotionsContext(connectionString))
+			{ };
 		}
 	}
 }

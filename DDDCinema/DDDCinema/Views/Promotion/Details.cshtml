@@ -43,5 +43,9 @@
         @Html.ActionLink("Change Dates", "SetValidityDates", new { id = Model.Id })
         @Html.ActionLink("Change Receive Condition", "SetCondition", new { id = Model.Id })
         @Html.ActionLink("Change Benefit", "SetBenefit", new { id = Model.Id })
+        @if (Model.IsComplete)
+        {
+            @Html.ActionLink("Mark as complete", "MarkAsComplete", new { id = Model.Id })
+        }
     </div>
 </div>

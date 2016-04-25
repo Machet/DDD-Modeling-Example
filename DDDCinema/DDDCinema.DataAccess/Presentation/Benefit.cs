@@ -22,12 +22,12 @@ namespace DDDCinema.DataAccess.Presentation
         }
     
         public System.Guid Id { get; set; }
+        public string Description { get; set; }
         public Nullable<decimal> Discount_Value { get; set; }
         public Nullable<System.Guid> Movie_Id { get; set; }
+        public string Movie_Name { get; set; }
         public string Type { get; set; }
-        public string Description { get; set; }
     
-        public virtual Movies1 Movies1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PromotionDraft> PromotionDrafts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

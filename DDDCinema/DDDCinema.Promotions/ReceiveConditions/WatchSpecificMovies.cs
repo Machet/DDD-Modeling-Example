@@ -7,7 +7,7 @@ namespace DDDCinema.Promotions.ReceiveConditions
 {
     public class WatchSpecificMovies : ReceiveCondition
     {
-        public List<Movie> MoviesToWatch { get; private set; }
+        public List<MovieToWatch> MoviesToWatch { get; private set; }
 
 		protected WatchSpecificMovies() { }
 
@@ -15,7 +15,7 @@ namespace DDDCinema.Promotions.ReceiveConditions
         {
             Require.NotNull(moviesToWatch, nameof(moviesToWatch));
             Require.IsTrue(() => moviesToWatch.Count > 0, "At least one movie required");
-            MoviesToWatch = moviesToWatch;
+            MoviesToWatch = moviesToWatch.Select(m => new MovieToWatch(m)).ToList();
 			Description = "Watch all movies: " + string.Join(" ,", moviesToWatch.Select(m => m.Name));
         }
 
@@ -23,5 +23,7 @@ namespace DDDCinema.Promotions.ReceiveConditions
         {
             return historyService.HasWatchedMovies(visitor, MoviesToWatch);
         }
+
+
     }
 }

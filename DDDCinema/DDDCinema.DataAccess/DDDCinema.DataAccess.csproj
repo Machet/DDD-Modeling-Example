@@ -61,13 +61,17 @@
     <Compile Include="AuditLogging\AuditOccurrenceEventHandler.cs" />
     <Compile Include="AuditLogging\AuditLog.cs" />
     <Compile Include="AuditLogging\AuditLogger.cs" />
+    <Compile Include="Business\EfApprovalRepository.cs" />
     <Compile Include="Business\EfAuthenticationRepository.cs" />
     <Compile Include="Business\EfMovieRepository.cs" />
     <Compile Include="Business\EfPromotionRepository.cs" />
     <Compile Include="Business\EfUserInRoleRepository.cs" />
     <Compile Include="Business\TransactionalCommandHandler.cs" />
+    <Compile Include="InfrastructureContext.cs" />
+    <Compile Include="DbSetup\EntityMappings\MovieToWatchMapping.cs" />
     <Compile Include="DbSetup\EntityMappings\PercentageMapping.cs" />
     <Compile Include="DbSetup\EntityMappings\EditorMapping.cs" />
+    <Compile Include="DbSetup\EntityMappings\MovieMapping.cs" />
     <Compile Include="DbSetup\EntityMappings\ReceiveConditionMapping.cs" />
     <Compile Include="DbSetup\EntityMappings\BenefitMapping.cs" />
     <Compile Include="DbSetup\EntityMappings\PromotionMapping.cs" />
@@ -111,7 +115,7 @@
     <Compile Include="Presentation\Movie.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Movies1.cs">
+    <Compile Include="Presentation\MoviesToWatch.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Promotion.cs">
@@ -158,6 +162,8 @@
     <Compile Include="Business\EfUserRepository.cs" />
     <Compile Include="Presentation\EfMovieViewRepository.cs" />
     <Compile Include="DbSetup\MovieSeed.cs" />
+    <Compile Include="Sheduling\RequestedTimeout.cs" />
+    <Compile Include="Sheduling\SagaTimeoutSheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

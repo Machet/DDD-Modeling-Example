@@ -30,6 +30,10 @@ a.disabled {
     pointer-events: none;
 }
 
+.action-buttons {
+    margin-bottom: 10px;
+}
+
 .screen {
     width: 80%;
     background-color: green;

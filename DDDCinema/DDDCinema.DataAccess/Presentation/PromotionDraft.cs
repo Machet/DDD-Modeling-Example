@@ -22,9 +22,9 @@ namespace DDDCinema.DataAccess.Presentation
         public System.Guid Owner_Id { get; set; }
         public string Owner_Name { get; set; }
         public System.DateTime CreationDate { get; set; }
+        public bool IsComplete { get; set; }
         public Nullable<System.Guid> Benefit_Id { get; set; }
         public Nullable<System.Guid> ReceiveCondition_Id { get; set; }
-        public bool IsComplete { get; set; }
     
         public virtual Benefit Benefit { get; set; }
         public virtual ReceiveCondition ReceiveCondition { get; set; }

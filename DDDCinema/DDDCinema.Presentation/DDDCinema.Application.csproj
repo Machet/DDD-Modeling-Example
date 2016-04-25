@@ -55,6 +55,7 @@
     <Compile Include="Presentation\Promotions\ApprovalRequestsDTO.cs" />
     <Compile Include="Presentation\Promotions\ApprovalStatusDTO.cs" />
     <Compile Include="Presentation\Promotions\ApprovalsView.cs" />
+    <Compile Include="Presentation\Promotions\PromotionDraftNameDTO.cs" />
     <Compile Include="Presentation\Promotions\IApprovalsViewRepository.cs" />
     <Compile Include="Presentation\Promotions\IPromotionsViewRepository.cs" />
     <Compile Include="Presentation\Promotions\MovieDTO.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="Presentation\Promotions\SetConditionView.cs" />
     <Compile Include="Promotions\ApprovePromotionDraftCommandHandler.cs" />
     <Compile Include="Promotions\CreatePromotionCommandHandler.cs" />
-    <Compile Include="Promotions\IMovieRepository.cs" />
+    <Compile Include="Promotions\MarkAsReadyCommandHandler.cs" />
     <Compile Include="Promotions\RenamePromotionCommandHandler.cs" />
     <Compile Include="Promotions\SetBenefitCommandHandler.cs" />
     <Compile Include="Promotions\SetConditionCommandHandler.cs" />

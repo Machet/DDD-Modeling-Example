@@ -1,0 +1,18 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.PromotionDraftNameDTO
+
+@{
+    ViewBag.Title = "MarkAsComplete";
+}
+
+<h2>Mark As Complete</h2>
+<p>
+    Are you sure that you want to mark @Model.Name as ready?
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.PromotionId)
+    <button type="submit" class="btn btn-primary">Yes I'm sure.</button>
+    @Html.ActionLink("Check details", "Details", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Cancel", "Index", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
+}

@@ -10,5 +10,6 @@ namespace DDDCinema.Application.Presentation.Promotions
 		public DateTime? StartDate { get; set; }
 		public string Benefit { get; set; }
 		public string Condition { get; set; }
+		public bool IsComplete { get; set; }
 	}
 }

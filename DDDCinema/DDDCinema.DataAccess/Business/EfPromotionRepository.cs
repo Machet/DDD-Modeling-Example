@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DDDCinema.Common;
 using DDDCinema.Promotions;
+using System.Data.Entity;
 
 namespace DDDCinema.DataAccess.Business
 {
@@ -24,12 +25,18 @@ namespace DDDCinema.DataAccess.Business
 
 		public Promotion GetById(Guid promotionId)
 		{
-			return _context.Promotions.Find(promotionId);
+			return _context.Promotions
+				.Include(x => x.ReceiveCondition)
+				.Include(x => x.Benefit)
+				.SingleOrDefault(p => p.Id == promotionId);
 		}
 
 		public PromotionDraft GetDraftById(Guid promotionDraftId)
 		{
-			return _context.PromotionDrafts.Find(promotionDraftId);
+			return _context.PromotionDrafts
+				.Include(x => x.ReceiveCondition)
+				.Include(x => x.Benefit)
+				.SingleOrDefault(p => p.Id == promotionDraftId);
 		}
 
 		public void Store(PromotionDraft draft)

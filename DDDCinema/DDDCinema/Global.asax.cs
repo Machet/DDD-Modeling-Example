@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using DDDCinema.CompositionRoot;
+using DDDCinema.DataAccess;
 using DDDCinema.DataAccess.DbSetup;
 
 namespace DDDCinema

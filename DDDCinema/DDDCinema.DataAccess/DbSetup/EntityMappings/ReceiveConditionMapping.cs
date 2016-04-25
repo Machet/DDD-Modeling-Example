@@ -13,4 +13,12 @@ namespace DDDCinema.DataAccess.DbSetup.EntityMappings
 			Map<WatchSpecificMovies>(m => m.Requires("Type").HasValue("WatchSpecificMovies"));
 		}
 	}
+
+	public class WatchSpecificMoviesReceiveConditionMapping : EntityTypeConfiguration<WatchSpecificMovies>
+	{
+		public WatchSpecificMoviesReceiveConditionMapping()
+		{
+			HasMany(m => m.MoviesToWatch).WithRequired();
+		}
+	}
 }

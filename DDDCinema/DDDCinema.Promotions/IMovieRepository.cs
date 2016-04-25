@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DDDCinema.Promotions;
 
-namespace DDDCinema.Application.Promotions
+namespace DDDCinema.Promotions
 {
 	public interface IMovieRepository
 	{

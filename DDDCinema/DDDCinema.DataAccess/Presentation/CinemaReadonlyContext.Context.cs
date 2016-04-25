@@ -39,7 +39,7 @@ namespace DDDCinema.DataAccess.Presentation
         public virtual DbSet<ApprovalProcess> ApprovalProcesses { get; set; }
         public virtual DbSet<ApprovalRequest> ApprovalRequests { get; set; }
         public virtual DbSet<Benefit> Benefits { get; set; }
-        public virtual DbSet<Movies1> Movies1 { get; set; }
+        public virtual DbSet<MoviesToWatch> MoviesToWatches { get; set; }
         public virtual DbSet<PromotionDraft> PromotionDrafts { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<ReceiveCondition> ReceiveConditions { get; set; }

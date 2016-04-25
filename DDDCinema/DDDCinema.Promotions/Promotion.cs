@@ -11,6 +11,8 @@ namespace DDDCinema.Promotions
         public Benefit Benefit { get; private set; }
         public ReceiveCondition ReceiveCondition { get; private set; }
 
+		protected Promotion() { }
+
         public Promotion(ValidityRange validityRange, ReceiveCondition receiveCondition, Benefit benefit)
         {
             ValidityRange = validityRange;

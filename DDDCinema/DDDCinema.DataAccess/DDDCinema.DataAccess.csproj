@@ -106,6 +106,7 @@
     <Compile Include="Presentation\C__MigrationHistory.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\EfVisitorHistoryRepository.cs" />
     <Compile Include="Presentation\LoginAttempt.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
@@ -142,6 +143,7 @@
     <Compile Include="Presentation\User.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="PromoCodes\PromoCodeGenerator.cs" />
     <Compile Include="PromotionsContext.cs" />
     <Compile Include="CinemaContext.cs" />
     <Compile Include="DbSetup\CinemaDbInitializer.cs" />

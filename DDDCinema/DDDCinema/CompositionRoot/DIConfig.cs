@@ -9,10 +9,12 @@ using DDDCinema.DataAccess;
 using DDDCinema.DataAccess.AuditLogging;
 using DDDCinema.DataAccess.Movies;
 using DDDCinema.DataAccess.Presentation;
+using DDDCinema.DataAccess.PromoCodes;
 using DDDCinema.DataAccess.Sheduling;
 using DDDCinema.Movies;
 using DDDCinema.Movies.Lotery;
 using DDDCinema.Movies.Notifications;
+using DDDCinema.Promotions.Granting;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 using SimpleInjector.Integration.Web;
@@ -64,6 +66,7 @@ namespace DDDCinema.CompositionRoot
 
 			container.Register<List<INotificationSender>>(() => container.GetAllInstances<INotificationSender>().ToList(), perRequest);
 			container.Register<ISheduler, SagaTimeoutSheduler>(perRequest);
+			container.Register<IPromotionCodeGenerator, PromoCodeGenerator>(perRequest);
 			DomainEventBus.Current = new SimpleInjectorEventBus(container);
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
 

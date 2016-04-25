@@ -8,6 +8,8 @@ namespace DDDCinema.Promotions.Approving
 		public ApprovalStatus Status { get; private set; }
 		public string Comment { get; private set; }
 
+		protected ApprovalRequest() { }
+
 		public ApprovalRequest(Editor e)
 		{
 			Editor = e;

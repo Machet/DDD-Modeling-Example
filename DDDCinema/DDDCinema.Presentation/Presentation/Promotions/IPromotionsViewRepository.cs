@@ -7,7 +7,7 @@ namespace DDDCinema.Application.Presentation.Promotions
 	{
 		List<PromotionDraftDTO> GetPromotions(Guid userId);
 		PromotionDraftNameDTO GetPromotionName(Guid id);
-		PromotionDetailsDTO GetPromotionDetails(Guid promotionId);
+		PromotionDetailsDTO GetPromotionDetails(Guid promotionId, Guid userId);
 		SetBenefitView GetSetBenefitView(Guid promotionId);
 		SetConditionView GetSetConditionView(Guid promotionId);
 	}

@@ -14,5 +14,11 @@ namespace DDDCinema.Promotions
 			Id = id;
 			Name = name;
 		}
+
+		public override bool Equals(object obj)
+		{
+			var second = obj as Editor;
+			return second != null && second.Id == Id;
+		}
 	}
 }

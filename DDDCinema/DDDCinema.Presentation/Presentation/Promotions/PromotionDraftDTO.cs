@@ -1,4 +1,5 @@
 ﻿using System;
+using DDDCinema.Promotions;
 
 namespace DDDCinema.Application.Presentation.Promotions
 {
@@ -6,7 +7,7 @@ namespace DDDCinema.Application.Presentation.Promotions
     {
         public Guid PromotionId { get; set; }
         public string Name { get; set; }
-		public string State { get; set; }
+		public DraftState State { get; set; }
         public DateTime CreationDate { get; set; }
 		public bool IsComplete { get; set; }
 	}

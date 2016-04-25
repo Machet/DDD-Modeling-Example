@@ -1,4 +1,5 @@
-﻿@model List<DDDCinema.Application.Presentation.Promotions.PromotionDraftDTO>
+﻿@using DDDCinema.Promotions;
+@model List<DDDCinema.Application.Presentation.Promotions.PromotionDraftDTO>
 @{
     ViewBag.Title = "My Promotions";
 }
@@ -19,15 +20,18 @@
         </tr>
         @foreach (var promotion in Model)
         {
+            var details = promotion.State == DraftState.New
+                ? "Edit"
+                : promotion.State == DraftState.FixesRequired ? "Correct" : "View Details";
+
             <tr>
                 <td>@promotion.Name</td>
                 <td>@promotion.State</td>
                 <td>@promotion.CreationDate</td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = promotion.PromotionId })
-                    @if (promotion.IsComplete)
+                <td class="actions">
+                    @Html.ActionLink(details, "Details", new { id = promotion.PromotionId })
+                    @if (promotion.IsComplete && (promotion.State == DraftState.New || promotion.State == DraftState.FixesRequired))
                     {
-                       <span>|</span>
                        @Html.ActionLink("Mark as complete", "MarkAsComplete", new { id = promotion.PromotionId })
                     }
                 </td>

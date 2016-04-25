@@ -1,0 +1,33 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.ApprovalsView
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Approval Requests</h2>
+
+@if (Model.Requests.Count > 0)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>Promotion Name</th>
+            <th>Owner</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var request in Model.Requests)
+        {
+            <tr>
+                <td>@request.PromotionName</td>
+                <td>@request.OwnerName</td>
+                <td class="actions">
+                    @Html.ActionLink("View", "Details", "Promotion", new { id = request.PromotionId }, null)
+                    @Html.ActionLink("Approve", "Approve", new { id = request.ProcessId })
+                    @Html.ActionLink("Reject", "Reject", new { id = request.ProcessId })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No Pending Requests</p>
+}

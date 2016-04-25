@@ -38,7 +38,7 @@
                     @if (User.Identity.IsAuthenticated && role == "Editor")
                     {
                         <li>@Html.ActionLink("Promotions", "Index", "Promotion")</li>
-                        <li>@Html.ActionLink("Approvals", "Index", "Approval")</li>
+                        <li>@Html.ActionLink("Approvals", "Index", "Approvals")</li>
                         <li>@Html.ActionLink("Audit", "Index", "Audit")</li>
                     }
                 </ul>

@@ -1,0 +1,22 @@
+﻿@model DDDCinema.Application.Presentation.Promotions.PromotionDraftNameDTO
+@{
+    ViewBag.Title = "Reject Promotion";
+    var processId = ViewContext.RouteData.Values["id"];
+}
+
+<h2>Reject Promotion</h2>
+<p>
+    Are you sure that you want to reject @Model.Name?
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("ApprovalProcessId", processId)
+    <div class="form-group">
+        <label>Please specify a reason</label>
+        @Html.TextArea("Reason", string.Empty, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Reject</button>
+    @Html.ActionLink("Check details", "Details", "Promotion", new { id = Model.PromotionId }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+}

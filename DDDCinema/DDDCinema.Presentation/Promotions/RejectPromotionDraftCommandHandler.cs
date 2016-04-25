@@ -5,18 +5,19 @@ using DDDCinema.Promotions.Approving;
 
 namespace DDDCinema.Application.Promotions
 {
-	public class ApprovePromotionDraftCommand : ICommand
+	public class RejectPromotionDraftCommand : ICommand
 	{
 		public Guid ApprovalProcessId { get; set; }
+		public string Reason { get; internal set; }
 	}
 
-	public class ApproveDraftCommandHandler : ICommandHandler<ApprovePromotionDraftCommand>
+	public class RejectDraftCommandHandler : ICommandHandler<RejectPromotionDraftCommand>
 	{
 		private readonly IApprovalRepository _approvalRepository;
 		private readonly IUserInRoleRepository _userInRoleRepository;
 		private readonly ICurrentUserProvider _currentUserProvider;
 
-		public ApproveDraftCommandHandler(
+		public RejectDraftCommandHandler(
 			IApprovalRepository approvalRepository,
 			IUserInRoleRepository userInRoleRepository,
 			ICurrentUserProvider currentUserProvider)
@@ -26,11 +27,11 @@ namespace DDDCinema.Application.Promotions
 			_currentUserProvider = currentUserProvider;
 		}
 
-		public void Handle(ApprovePromotionDraftCommand command)
+		public void Handle(RejectPromotionDraftCommand command)
 		{
 			Editor editor = _userInRoleRepository.GetEditor(_currentUserProvider.GetUserId().Value);
 			ApprovalProcess process = _approvalRepository.GetApprovalProcess(command.ApprovalProcessId);
-			process.ApproveFor(editor);
+			process.RejectFor(editor, command.Reason);
 		}
 	}
 

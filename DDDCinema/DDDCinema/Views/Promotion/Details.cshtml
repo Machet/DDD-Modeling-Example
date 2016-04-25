@@ -1,4 +1,5 @@
-﻿@model DDDCinema.Application.Presentation.Promotions.PromotionDetailsDTO
+﻿@using DDDCinema.Promotions;
+@model DDDCinema.Application.Presentation.Promotions.PromotionDetailsDTO
 @{
     ViewBag.Title = "Details";
 }
@@ -8,6 +9,14 @@
     <div class="summary-row">
         <label>Name:</label>
         <span>@Model.Name</span>
+    </div>
+    <div class="summary-row">
+        <label>State:</label>
+        <span>@Model.State</span>
+    </div>
+    <div class="summary-row">
+        <label>Owner:</label>
+        <span>@Model.OwnerName</span>
     </div>
     <div class="summary-row">
         <label>Valididty Dates:</label>
@@ -36,6 +45,8 @@
     </div>
 </div>
 
+@if (Model.IsOwner && (Model.State == DraftState.New || Model.State == DraftState.FixesRequired))
+{
 <div class="actions">
     <div class="header">Actions</div>
     <div class="content">
@@ -43,9 +54,10 @@
         @Html.ActionLink("Change Dates", "SetValidityDates", new { id = Model.Id })
         @Html.ActionLink("Change Receive Condition", "SetCondition", new { id = Model.Id })
         @Html.ActionLink("Change Benefit", "SetBenefit", new { id = Model.Id })
-        @if (Model.IsComplete)
+        @if (Model.IsComplete) 
         {
             @Html.ActionLink("Mark as complete", "MarkAsComplete", new { id = Model.Id })
         }
     </div>
 </div>
+}

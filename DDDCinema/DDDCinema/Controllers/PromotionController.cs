@@ -67,7 +67,7 @@ namespace DDDCinema.Controllers
 		[HttpGet]
 		public ActionResult Details(Guid id)
 		{
-			PromotionDetailsDTO details = _repository.GetPromotionDetails(id);
+			PromotionDetailsDTO details = _repository.GetPromotionDetails(id, _userProvider.GetUserId().Value);
 			return View(details);
 		}
 

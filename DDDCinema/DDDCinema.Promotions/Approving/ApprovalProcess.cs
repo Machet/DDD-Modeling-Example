@@ -12,6 +12,8 @@ namespace DDDCinema.Promotions.Approving
         public List<ApprovalRequest> ApprovalRequests { get; private set; }
         public ApprovalStatus Status { get; private set; }
 
+		protected ApprovalProcess() { }
+
         protected ApprovalProcess(Guid promotionId, HashSet<Editor> editors)
         {
             Id = Guid.NewGuid();
@@ -22,7 +24,7 @@ namespace DDDCinema.Promotions.Approving
 
         public void ApproveFor(Editor editor)
         {
-            var request = ApprovalRequests.FirstOrDefault(ar => ar.Editor == editor);
+            var request = ApprovalRequests.FirstOrDefault(ar => ar.Editor.Equals(editor));
             if(request != null)
             {
                 request.Approve();
@@ -32,7 +34,7 @@ namespace DDDCinema.Promotions.Approving
 
         public void RejectFor(Editor editor, string reason)
         {
-            var request = ApprovalRequests.FirstOrDefault(ar => ar.Editor == editor);
+            var request = ApprovalRequests.FirstOrDefault(ar => ar.Editor.Equals(editor));
             if (request != null)
             {
                 request.Reject(reason);
@@ -40,7 +42,7 @@ namespace DDDCinema.Promotions.Approving
             }
         }
 
-        public void Complete()
+		public void Complete()
         {
             if (Status != ApprovalStatus.Pending)
             {

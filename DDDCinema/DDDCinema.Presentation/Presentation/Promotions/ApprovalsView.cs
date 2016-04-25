@@ -4,7 +4,7 @@ namespace DDDCinema.Application.Presentation.Promotions
 {
     public class ApprovalsView
     {
-        List<ApprovalStatusDTO> Approvals { get; set; }
-        List<ApprovalRequestsDTO> Requests { get; set; }
+        public List<ApprovalStatusDTO> Approvals { get; set; }
+        public List<ApprovalRequestsDTO> Requests { get; set; }
     }
 }

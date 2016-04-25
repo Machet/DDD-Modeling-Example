@@ -4,6 +4,7 @@ using System.Linq;
 using DDDCinema.Application.Presentation.Promotions;
 using DDDCinema.Application.Promotions;
 using DDDCinema.Common;
+using DDDCinema.Promotions;
 
 namespace DDDCinema.DataAccess.Presentation
 {
@@ -28,7 +29,7 @@ namespace DDDCinema.DataAccess.Presentation
 				}).FirstOrDefault(d => d.PromotionId == promotionDraftId);
 		}
 
-		public PromotionDetailsDTO GetPromotionDetails(Guid promotionId)
+		public PromotionDetailsDTO GetPromotionDetails(Guid promotionId, Guid userId)
 		{
 			return _context.PromotionDrafts
 				.Where(pd => pd.Id == promotionId)
@@ -36,11 +37,14 @@ namespace DDDCinema.DataAccess.Presentation
 				{
 					Id = pd.Id,
 					Name = pd.Name,
+					State = (DraftState)pd.State,
+					OwnerName = pd.Owner_Name,
 					StartDate = pd.ValidityRange_StartDate,
 					EndDate = pd.ValidityRange_EndDate,
 					Condition = pd.ReceiveCondition.Description,
 					Benefit = pd.Benefit.Description,
-					IsComplete = pd.IsComplete
+					IsComplete = pd.IsComplete,
+					IsOwner = pd.Owner_Id == userId
 				})
 				.FirstOrDefault();
 		}
@@ -53,7 +57,7 @@ namespace DDDCinema.DataAccess.Presentation
 				{
 					PromotionId = p.Id,
 					Name = p.Name,
-					State = p.State.ToString(),
+					State = (DraftState)p.State,
 					CreationDate = p.CreationDate,
 					IsComplete = p.IsComplete
 				}).ToList();

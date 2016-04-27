@@ -12,8 +12,4 @@ namespace DDDCinema.DataAccess.DbSetup
             MovieTimeSeed.Seed(context);
         }
     }
-
-	public class PromotionsDbInitializer : DropCreateDatabaseIfModelChanges<PromotionsContext>
-	{
-	}
 }

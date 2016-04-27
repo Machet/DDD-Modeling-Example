@@ -69,11 +69,6 @@ namespace DDDCinema.CompositionRoot
 			container.Register<IPromotionCodeGenerator, PromoCodeGenerator>(perRequest);
 			DomainEventBus.Current = new SimpleInjectorEventBus(container);
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
-
-			// TEMP initializing databases
-			using (new CinemaContext(connectionString))
-			using (new PromotionsContext(connectionString))
-			{ };
 		}
 	}
 }

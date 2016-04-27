@@ -11,11 +11,6 @@ namespace DDDCinema.DataAccess
 		public DbSet<Promotion> Promotions { get; set; }
 		public DbSet<ApprovalProcess> ApprovalProcesses { get; set; }
 
-		static PromotionsContext()
-		{
-			Database.SetInitializer(new PromotionsDbInitializer());
-		}
-
 		public PromotionsContext(string connectionString) : base(connectionString)
 		{
 		}

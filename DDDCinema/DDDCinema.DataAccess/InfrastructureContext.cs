@@ -7,11 +7,6 @@ namespace DDDCinema.DataAccess
 	{
 		public DbSet<RequestedTimeout> RequestedTimeouts { get; set; }
 
-		static InfrastructureContext()
-		{
-			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<InfrastructureContext>());
-		}
-
 		public InfrastructureContext(string connectionString) : base(connectionString)
 		{
 		}

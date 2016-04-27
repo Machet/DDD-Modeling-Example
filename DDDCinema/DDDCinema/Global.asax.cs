@@ -17,7 +17,8 @@ namespace DDDCinema
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-			DIConfig.Setup();
+			DatabaseConfig.Setup();
+            DIConfig.Setup();
 		}
 
 		protected void Application_EndRequest(object sender, EventArgs e)

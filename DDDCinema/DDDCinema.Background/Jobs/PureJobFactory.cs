@@ -13,7 +13,7 @@ namespace DDDCinema.Background.Jobs
 		{
 			if (bundle.JobDetail.JobType == typeof(EmailSendingJob))
 			{
-				var context = new CinemaContext("DDDCinema");
+				var context = new InfrastructureContext("DDDCinema");
 				var notificationRepository = new EfNotificationRepository(context);
 				var job = new EmailSendingJob(notificationRepository, new SmtpMailSender());
 				return new TransactionalJob(job, context);
@@ -21,7 +21,7 @@ namespace DDDCinema.Background.Jobs
 
 			if (bundle.JobDetail.JobType == typeof(SmsSendingJob))
 			{
-				var context = new CinemaContext("DDDCinema");
+				var context = new InfrastructureContext("DDDCinema");
 				var notificationRepository = new EfNotificationRepository(context);
 				var job = new SmsSendingJob(notificationRepository, new GateSmsSender());
 				return new TransactionalJob(job, context);

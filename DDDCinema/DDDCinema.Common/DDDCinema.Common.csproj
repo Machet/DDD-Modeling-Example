@@ -49,11 +49,17 @@
     <Compile Include="ICommandHandler.cs" />
     <Compile Include="ICurrentUserProvider.cs" />
     <Compile Include="IdentifiedValueObject.cs" />
+    <Compile Include="Notification\IMailSender.cs" />
+    <Compile Include="Notification\INotificationQueue.cs" />
+    <Compile Include="Notification\ISmsSender.cs" />
+    <Compile Include="Notification\MailToSend.cs" />
+    <Compile Include="Notification\SmsToSend.cs" />
     <Compile Include="Sheduling\ISheduler.cs" />
     <Compile Include="Sheduling\ITimeoutHandler.cs" />
     <Compile Include="Require.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

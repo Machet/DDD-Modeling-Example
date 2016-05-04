@@ -32,4 +32,9 @@ namespace DDDCinema.DataAccess.Movies
 	{
 		public PromotionTransactionalCommandHandler(ICommandHandler<T> handler, PromotionsContext context) : base(handler, context) { }
 	}
+
+	public class InfrastructureTransactionalCommandHandler<T> : TransactionalCommandHandler<T, InfrastructureContext> where T : ICommand
+	{
+		public InfrastructureTransactionalCommandHandler(ICommandHandler<T> handler, InfrastructureContext context) : base(handler, context) { }
+	}
 }

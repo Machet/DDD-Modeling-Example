@@ -8,12 +8,10 @@
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.AuditLogEntry" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.LoginAttempt" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.MailToSend" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Movie" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Room" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.Seanse" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.SeatAssignment" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.SmsToSend" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.User" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalProcess" Width="1.5" PointX="7.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.ApprovalRequest" Width="1.5" PointX="10" PointY="8" IsExpanded="true" />
@@ -31,6 +29,9 @@
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_MoviesToWatch_Promotions_ReceiveConditions_WatchSpecificMovies_Id" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_PromotionDrafts_Promotions_ReceiveConditions_ReceiveCondition_Id" />
         <AssociationConnector Association="DDDCinema.DataAccess.Readonly.FK_Promotions_Promotions_Promotions_ReceiveConditions_ReceiveCondition_Id" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.MailToSend" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.RequestedTimeouts" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DDDCinema.DataAccess.Readonly.SmsToSend" Width="1.5" PointX="2.75" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,18 +1,19 @@
 ﻿using DDDCinema.Common;
 using System;
 using System.Collections.Generic;
+using DDDCinema.Common.Notifications;
 
 namespace DDDCinema.Movies.Notifications
 {
     public class EmailNotificationSender : INotificationSender
     {
-        private INotificationRepository _notificationRepository;
+        private INotificationQueue _notificationQueue;
         private ITemplateRepository _templateRepository;
         private Dictionary<Guid, MailToSend> _currentMailsToSend;
 
-        public EmailNotificationSender(INotificationRepository notificationRepository, ITemplateRepository templateRepository)
+        public EmailNotificationSender(INotificationQueue notificationQueue, ITemplateRepository templateRepository)
         {
-            _notificationRepository = notificationRepository;
+            _notificationQueue = notificationQueue;
             _templateRepository = templateRepository;
             _currentMailsToSend = new Dictionary<Guid, MailToSend>();
         }
@@ -82,7 +83,7 @@ namespace DDDCinema.Movies.Notifications
             };
 
             _currentMailsToSend[mailToSend.UserId] = mailToSend;
-            _notificationRepository.QueueMail(mailToSend);
+            _notificationQueue.QueueMail(mailToSend);
         }
     }
 }

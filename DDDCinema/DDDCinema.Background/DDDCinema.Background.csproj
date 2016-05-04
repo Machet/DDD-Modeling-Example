@@ -82,6 +82,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDDCinema.Common\DDDCinema.Common.csproj">
+      <Project>{6803928f-33cc-4bba-823d-fac57b03fbfa}</Project>
+      <Name>DDDCinema.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDDCinema.DataAccess\DDDCinema.DataAccess.csproj">
       <Project>{f00ab9ca-1ac2-45e0-90f1-279b028986e6}</Project>
       <Name>DDDCinema.DataAccess</Name>

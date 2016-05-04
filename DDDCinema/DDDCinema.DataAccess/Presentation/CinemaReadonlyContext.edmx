@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DDDCinema.DataAccess.Readonly.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MailToSends">
+          <Key>
+            <PropertyRef Name="MailToSendId" />
+          </Key>
+          <Property Name="MailToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="EmailFrom" Type="nvarchar(max)" />
+          <Property Name="EmailTo" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestedTimeouts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TimeoutTime" Type="datetime" Nullable="false" />
+          <Property Name="TimeoutType" Type="nvarchar(max)" />
+          <Property Name="TimeoutDataJson" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SmsToSends">
+          <Key>
+            <PropertyRef Name="SmsToSendId" />
+          </Key>
+          <Property Name="SmsToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -34,19 +67,6 @@
           <Property Name="UserRole" Type="nvarchar(max)" />
           <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="Time" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MailToSends">
-          <Key>
-            <PropertyRef Name="MailToSendId" />
-          </Key>
-          <Property Name="MailToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="EmailFrom" Type="nvarchar(max)" />
-          <Property Name="EmailTo" Type="nvarchar(max)" />
-          <Property Name="Subject" Type="nvarchar(max)" />
-          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
-          <Property Name="CreationTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Movies">
           <Key>
@@ -86,17 +106,6 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Row" Type="int" Nullable="false" />
           <Property Name="SeatNumber" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SmsToSends">
-          <Key>
-            <PropertyRef Name="SmsToSendId" />
-          </Key>
-          <Property Name="SmsToSendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Message" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="HasBeenSent" Type="bit" Nullable="false" />
-          <Property Name="CreationTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -306,15 +315,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DDDCinemaDataAccessReadonlyStoreContainer">
+          <EntitySet Name="MailToSends" EntityType="Self.MailToSends" Schema="Infrastructure" store:Type="Tables" />
+          <EntitySet Name="RequestedTimeouts" EntityType="Self.RequestedTimeouts" Schema="Infrastructure" store:Type="Tables" />
+          <EntitySet Name="SmsToSends" EntityType="Self.SmsToSends" Schema="Infrastructure" store:Type="Tables" />
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="AuditLogs" EntityType="Self.AuditLogs" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="LoginAttempts" EntityType="Self.LoginAttempts" Schema="Movies" store:Type="Tables" />
-          <EntitySet Name="MailToSends" EntityType="Self.MailToSends" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="Movies" EntityType="Self.Movies" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="Seanses" EntityType="Self.Seanses" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="SeatAssignments" EntityType="Self.SeatAssignments" Schema="Movies" store:Type="Tables" />
-          <EntitySet Name="SmsToSends" EntityType="Self.SmsToSends" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="Movies" store:Type="Tables" />
           <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcesses" Schema="Promotions" store:Type="Tables" />
           <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequests" Schema="Promotions" store:Type="Tables" />
@@ -394,19 +404,6 @@
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="MailToSend">
-          <Key>
-            <PropertyRef Name="MailToSendId" />
-          </Key>
-          <Property Name="MailToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmailFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
-          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="MovieId" />
@@ -451,17 +448,6 @@
           <Property Name="Row" Type="Int32" Nullable="false" />
           <Property Name="SeatNumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Seans" Relationship="Self.FK_Movies_SeatAssignments_Movies_Seanses_SeanseId" FromRole="SeatAssignments" ToRole="Seanses" />
-        </EntityType>
-        <EntityType Name="SmsToSend">
-          <Key>
-            <PropertyRef Name="SmsToSendId" />
-          </Key>
-          <Property Name="SmsToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
-          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -558,12 +544,10 @@
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AuditLogEntries" EntityType="DDDCinema.DataAccess.Readonly.AuditLogEntry" />
           <EntitySet Name="LoginAttempts" EntityType="Self.LoginAttempt" />
-          <EntitySet Name="MailToSends" EntityType="Self.MailToSend" />
           <EntitySet Name="Movies2" EntityType="DDDCinema.DataAccess.Readonly.Movie" />
           <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="Seanses" EntityType="DDDCinema.DataAccess.Readonly.Seanse" />
           <EntitySet Name="SeatAssignments" EntityType="Self.SeatAssignment" />
-          <EntitySet Name="SmsToSends" EntityType="Self.SmsToSend" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="ApprovalProcesses" EntityType="Self.ApprovalProcess" />
           <EntitySet Name="ApprovalRequests" EntityType="Self.ApprovalRequest" />
@@ -608,6 +592,9 @@
             <End Role="ReceiveCondition" EntitySet="ReceiveConditions" />
             <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
+          <EntitySet Name="MailsToSend" EntityType="DDDCinema.DataAccess.Readonly.MailToSend" />
+          <EntitySet Name="RequestedTimeouts" EntityType="DDDCinema.DataAccess.Readonly.RequestedTimeouts" />
+          <EntitySet Name="SmsesToSend" EntityType="DDDCinema.DataAccess.Readonly.SmsToSend" />
           </EntityContainer>
         <EntityType Name="Benefit">
           <Key>
@@ -737,6 +724,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MailToSend">
+          <Key>
+            <PropertyRef Name="MailToSendId" />
+          </Key>
+          <Property Name="MailToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RequestedTimeouts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TimeoutTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeoutType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeoutDataJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SmsToSend">
+          <Key>
+            <PropertyRef Name="SmsToSendId" />
+          </Key>
+          <Property Name="SmsToSendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HasBeenSent" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -772,20 +792,6 @@
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MailToSends">
-            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.MailToSend">
-              <MappingFragment StoreEntitySet="MailToSends">
-                <ScalarProperty Name="MailToSendId" ColumnName="MailToSendId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
-                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -829,18 +835,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Row" ColumnName="Row" />
                 <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SmsToSends">
-            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.SmsToSend">
-              <MappingFragment StoreEntitySet="SmsToSends">
-                <ScalarProperty Name="SmsToSendId" ColumnName="SmsToSendId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -943,6 +937,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MailsToSend">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.MailToSend">
+              <MappingFragment StoreEntitySet="MailToSends">
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MailToSendId" ColumnName="MailToSendId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestedTimeouts">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.RequestedTimeouts">
+              <MappingFragment StoreEntitySet="RequestedTimeouts">
+                <ScalarProperty Name="TimeoutDataJson" ColumnName="TimeoutDataJson" />
+                <ScalarProperty Name="TimeoutType" ColumnName="TimeoutType" />
+                <ScalarProperty Name="TimeoutTime" ColumnName="TimeoutTime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmsesToSend">
+            <EntityTypeMapping TypeName="DDDCinema.DataAccess.Readonly.SmsToSend">
+              <MappingFragment StoreEntitySet="SmsToSends">
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="HasBeenSent" ColumnName="HasBeenSent" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SmsToSendId" ColumnName="SmsToSendId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -957,7 +987,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

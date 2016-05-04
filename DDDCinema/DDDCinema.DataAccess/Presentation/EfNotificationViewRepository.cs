@@ -6,9 +6,9 @@ namespace DDDCinema.DataAccess.Presentation
 {
     public class EfNotificationViewRepository : INotificationViewRepository
     {
-        private readonly CinemaContext _context;
+        private readonly DDDCinemaReadonly _context;
 
-        public EfNotificationViewRepository(CinemaContext context)
+        public EfNotificationViewRepository(DDDCinemaReadonly context)
         {
             _context = context;
         }

@@ -1,23 +1,24 @@
 ﻿using DDDCinema.Movies.Notifications;
 using Quartz;
 using System.Collections.Generic;
+using DDDCinema.Common.Notifications;
 
 namespace DDDCinema.Background.Jobs
 {
     public class SmsSendingJob : IJob
     {
-        private readonly INotificationRepository _notificationRepository;
+        private readonly INotificationQueue _notificationQueue;
         private readonly ISmsSender _smsSender;
 
-        public SmsSendingJob(INotificationRepository notificationRepository, ISmsSender smsSender)
+        public SmsSendingJob(INotificationQueue notificationQueue, ISmsSender smsSender)
         {
-            _notificationRepository = notificationRepository;
+            _notificationQueue = notificationQueue;
             _smsSender = smsSender;
         }
 
         public void Execute(IJobExecutionContext context)
         {
-            List<SmsToSend> smsTosend = _notificationRepository.GetUnsentSmses();
+            List<SmsToSend> smsTosend = _notificationQueue.GetUnsentSmses();
             foreach (var sms in smsTosend)
             {
                 _smsSender.SendSms(sms);

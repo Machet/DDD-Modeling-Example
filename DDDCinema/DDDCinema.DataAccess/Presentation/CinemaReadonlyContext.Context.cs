@@ -29,12 +29,10 @@ namespace DDDCinema.DataAccess.Presentation
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AuditLogEntry> AuditLogEntries { get; set; }
         public virtual DbSet<LoginAttempt> LoginAttempts { get; set; }
-        public virtual DbSet<MailToSend> MailToSends { get; set; }
         public virtual DbSet<Movie> Movies2 { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Seanse> Seanses { get; set; }
         public virtual DbSet<SeatAssignment> SeatAssignments { get; set; }
-        public virtual DbSet<SmsToSend> SmsToSends { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ApprovalProcess> ApprovalProcesses { get; set; }
         public virtual DbSet<ApprovalRequest> ApprovalRequests { get; set; }
@@ -43,5 +41,8 @@ namespace DDDCinema.DataAccess.Presentation
         public virtual DbSet<PromotionDraft> PromotionDrafts { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<ReceiveCondition> ReceiveConditions { get; set; }
+        public virtual DbSet<MailToSend> MailsToSend { get; set; }
+        public virtual DbSet<RequestedTimeouts> RequestedTimeouts { get; set; }
+        public virtual DbSet<SmsToSend> SmsesToSend { get; set; }
     }
 }

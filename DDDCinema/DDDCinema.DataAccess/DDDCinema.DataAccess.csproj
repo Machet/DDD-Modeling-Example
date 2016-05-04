@@ -128,6 +128,9 @@
     <Compile Include="Presentation\ReceiveCondition.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\RequestedTimeouts.cs">
+      <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Room.cs">
       <DependentUpon>CinemaReadonlyContext.tt</DependentUpon>
     </Compile>
@@ -158,7 +161,7 @@
     <Compile Include="Presentation\EfNotificationViewRepository.cs" />
     <Compile Include="Presentation\EfPromotionsViewRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Business\EfNotificationRepository.cs" />
+    <Compile Include="Notifications\EfNotificationQueue.cs" />
     <Compile Include="Business\EfRoomRepository.cs" />
     <Compile Include="Business\EfTemplateRepository.cs" />
     <Compile Include="Business\EfUserRepository.cs" />

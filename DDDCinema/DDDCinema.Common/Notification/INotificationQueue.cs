@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace DDDCinema.Movies.Notifications
+namespace DDDCinema.Common.Notifications
 {
-    public interface INotificationRepository
+    public interface INotificationQueue
     {
         void QueueMail(MailToSend mailToSend);
         void QueueSms(SmsToSend smsSettings);

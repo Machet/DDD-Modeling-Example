@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDDCinema.Movies.Notifications
+namespace DDDCinema.Common.Notifications
 {
     public class SmsToSend
     {

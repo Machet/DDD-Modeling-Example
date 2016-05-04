@@ -1,25 +1,25 @@
-﻿using DDDCinema.Movies.Notifications;
-using System;
+﻿using System;
+using DDDCinema.Common.Notifications;
 
 namespace DDDCinema.DataAccess.Notifications
 {
-    public class GateSmsSender : ISmsSender, IDisposable
-    {
-        private bool _isDisposed;
+	public class GateSmsSender : ISmsSender, IDisposable
+	{
+		private bool _isDisposed;
 
-        public void SendSms(SmsToSend sms)
-        {
-            // connect to gate
-            // prepare sms
-            // send
-        }
+		public void SendSms(SmsToSend sms)
+		{
+			// connect to gate
+			// prepare sms
+			// send
+		}
 
-        public void Dispose()
-        {
-            if (!_isDisposed)
-            {
-                _isDisposed = true;
-            }
-        }
-    }
+		public void Dispose()
+		{
+			if (!_isDisposed)
+			{
+				_isDisposed = true;
+			}
+		}
+	}
 }

@@ -1,4 +1,4 @@
-﻿namespace DDDCinema.Movies.Notifications
+﻿namespace DDDCinema.Common.Notifications
 {
     public interface ISmsSender
     {

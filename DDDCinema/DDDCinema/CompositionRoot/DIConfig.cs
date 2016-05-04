@@ -53,7 +53,7 @@ namespace DDDCinema.CompositionRoot
 			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(AuditingCommandHandler<>),
 				p => !p.AppliedDecorators.Any(t => t.Name.Contains("Auditing")));
 			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(CinemaTransactionalCommandHandler<>));
-			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(PromotionTransactionalCommandHandler<>), p => p.ImplementationType.Namespace.Contains("Promotions"));
+			container.RegisterDecorator(typeof(ICommandHandler<>), typeof(PromotionTransactionalCommandHandler<>));
 			container.Register(typeof(ICommandHandler<>), new[] { applicationAssembly });
 
 			container.RegisterCollection(typeof(INotificationSender), new[] { moviesAssembly });

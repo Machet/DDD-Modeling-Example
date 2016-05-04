@@ -19,7 +19,9 @@ namespace DDDCinema.DataAccess.Business
 		public List<Promotion> GetActivePromotions()
 		{
 			return _context.Promotions
-				.Where(p => p.ValidityRange.StartDate > DomainTime.Current.Now && p.ValidityRange.EndDate < DomainTime.Current.Now)
+				.Include(x => x.ReceiveCondition)
+				.Include(x => x.Benefit)
+				.Where(p => p.ValidityRange.StartDate < DomainTime.Current.Now && p.ValidityRange.EndDate > DomainTime.Current.Now)
 				.ToList();
 		}
 

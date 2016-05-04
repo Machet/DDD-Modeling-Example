@@ -11,7 +11,7 @@ namespace DDDCinema.Promotions.Benefits
 
 		public DiscountForEntry(Percentage discount)
 		{
-			Require.NotNull(discount, nameof(discount));
+			Require.NotNull(discount, "discount");
 			Discount = discount;
 			Description = "Get " + Discount.Value + " percent of discount for next entry";
 		}

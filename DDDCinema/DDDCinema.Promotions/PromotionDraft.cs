@@ -19,8 +19,8 @@ namespace DDDCinema.Promotions
 
 		public PromotionDraft(Guid id, string name, Editor owner)
 		{
-			Require.NotEmpty(name, nameof(name));
-			Require.NotNull(owner, nameof(owner));
+			Require.NotEmpty(name, "name");
+			Require.NotNull(owner, "owner");
 			Id = id;
 			Name = name;
 			Owner = owner;
@@ -30,13 +30,13 @@ namespace DDDCinema.Promotions
 
 		public void Rename(string newName)
 		{
-			Require.NotEmpty(newName, nameof(newName));
+			Require.NotEmpty(newName, "newName");
 			Name = newName;
 		}
 
 		public void SetValidityRange(ValidityRange range)
 		{
-			Require.NotNull(range, nameof(range));
+			Require.NotNull(range, "range");
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			ValidityRange = range;
 			CheckCompletion();
@@ -44,7 +44,7 @@ namespace DDDCinema.Promotions
 
 		public void SetBenefit(Benefit benefit)
 		{
-			Require.NotNull(benefit, nameof(benefit));
+			Require.NotNull(benefit, "benefit");
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			Benefit = benefit;
 			CheckCompletion();
@@ -52,7 +52,7 @@ namespace DDDCinema.Promotions
 
 		public void SetReceiveCondition(ReceiveCondition condition)
 		{
-			Require.NotNull(condition, nameof(condition));
+			Require.NotNull(condition, "condition");
 			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
 			ReceiveCondition = condition;
 			CheckCompletion();
@@ -60,9 +60,9 @@ namespace DDDCinema.Promotions
 
 		public void MarkAsReady()
 		{
-			Require.NotNull(ValidityRange, nameof(ValidityRange));
-			Require.NotNull(Benefit, nameof(Benefit));
-			Require.NotNull(ReceiveCondition, nameof(ReceiveCondition));
+			Require.NotNull(ValidityRange, "ValidityRange");
+			Require.NotNull(Benefit, "Benefit");
+			Require.NotNull(ReceiveCondition, "ReceiveCondition");
 			Require.IsTrue(() => ValidityRange.IsDefined() && ValidityRange.StartsAfter(DomainTime.Current.Now), "validity range should be in future");
 			Require.IsIn(State, DraftState.New, DraftState.FixesRequired);
 			State = DraftState.Completed;

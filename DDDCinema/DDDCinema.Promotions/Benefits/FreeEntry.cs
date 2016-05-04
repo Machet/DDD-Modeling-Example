@@ -11,7 +11,7 @@ namespace DDDCinema.Promotions.Benefits
 
 		public FreeEntry(Movie movie)
         {
-            Require.NotNull(movie, nameof(movie));
+            Require.NotNull(movie, "movie");
             Movie = movie;
 			Description = "Get a free entrance for " + Movie.Name + " movie";
 		}

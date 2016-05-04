@@ -78,7 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DDDCinema.Business\DDDCinema.Movies.csproj">
+    <ProjectReference Include="..\DDDCinema.Movies\DDDCinema.Movies.csproj">
       <Project>{0a08ca66-1253-4239-b6f5-9243027f5d7a}</Project>
       <Name>DDDCinema.Movies</Name>
     </ProjectReference>

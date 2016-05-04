@@ -13,7 +13,7 @@ namespace DDDCinema.Promotions.ReceiveConditions
 
 		public GoToPremiere(ValidityRange range, int requiredCount)
         {
-            Require.NotNull(range, nameof(range));
+            Require.NotNull(range, "range");
             Require.IsTrue(() => requiredCount > 0, "required count should be positive");
             Require.IsTrue(() => range.IsDefined(), "range must have definied dates");
             ValidityRange = range;

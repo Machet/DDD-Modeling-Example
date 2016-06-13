@@ -1,9 +1,10 @@
-﻿using DDDCinema.Common;
+﻿using System;
 
 namespace DDDCinema.Promotions.Approving
 {
-	public class ApprovalRequest : IdentifiedValueObject
+	public class ApprovalRequest
 	{
+		public Guid Id { get; private set; }
 		public Editor Editor { get; private set; }
 		public ApprovalStatus Status { get; private set; }
 		public string Comment { get; private set; }

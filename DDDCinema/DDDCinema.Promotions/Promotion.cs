@@ -15,6 +15,7 @@ namespace DDDCinema.Promotions
 
         public Promotion(ValidityRange validityRange, ReceiveCondition receiveCondition, Benefit benefit)
         {
+			Id = Guid.NewGuid();
             ValidityRange = validityRange;
             ReceiveCondition = receiveCondition;
             Benefit = benefit;

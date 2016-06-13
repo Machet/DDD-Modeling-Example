@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DDDCinema.Promotions.Approving.ApprovalProcess">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAHEAAAAAMAACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Approving\ApprovalProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Approving.ApprovalProcessSaga" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAABAAAIAAEAABAAAgAA=</HashCode>
+      <FileName>Approving\ApprovalProcessSaga.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DDDCinema.Promotions.Approving.ApprovalProcessTimeout">
+    <Position X="9.5" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Approving\ApprovalProcessTimeout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Approving.ApprovalRequest">
+    <Position X="5.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Approving\ApprovalRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Approving.PromotionApproved" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Approving\PromotionApproved.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DDDCinema.Promotions.Approving.PromotionRejected" BaseTypeListCollapsed="true">
+    <Position X="5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Approving\PromotionRejected.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="DDDCinema.Promotions.Approving.IApprovalRepository">
+    <Position X="0.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Approving\IApprovalRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DDDCinema.Promotions.Approving.ApprovalStatus">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Approving\ApprovalStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -38,7 +38,7 @@ namespace DDDCinema.Promotions.Approving
         {
             PromotionDraft draft = _promotionRepository.GetDraftById(@event.PromotionId);
             draft.MarkAsAccepted();
-            _promotionRepository.Store(draft.CreatePromotion());
+            _promotionRepository.Store(draft.Publish());
         }
 
         public void Handle(PromotionRejected @event)

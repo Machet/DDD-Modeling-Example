@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DDDCinema.Promotions.Benefit">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Editor">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.DiscountForEntry">
+    <Position X="11.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Benefits\DiscountForEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.FreeEntry">
+    <Position X="15" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefits\FreeEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.FreePremiereEntry">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefits\FreePremiereEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.GoToPremiere">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiveConditions\GoToPremiere.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.MovieToWatch">
+    <Position X="22.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiveConditions\MovieToWatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchAtSpecificDay">
+    <Position X="16.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ReceiveConditions\WatchAtSpecificDay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchSpecificMovies">
+    <Position X="20.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ReceiveConditions\WatchSpecificMovies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveCondition">
+    <Position X="18.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiveCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Promotion">
+    <Position X="13.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAAAAAAEAAAAAAAAAAAAAAECAAAAAAQAAA=</HashCode>
+      <FileName>Promotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.PromotionDraft">
+    <Position X="10.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>SQACAACAEAAAAAAAAEAAAAQABAAAAAQEAAAIFAAQgAA=</HashCode>
+      <FileName>PromotionDraft.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ValidityRange">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAIAAAAAAAAAAAAAAgAAABAAAAAAAAAkAQAAA=</HashCode>
+      <FileName>ValidityRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Visitor">
+    <Position X="23.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Visitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

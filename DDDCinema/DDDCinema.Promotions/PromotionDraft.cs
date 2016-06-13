@@ -63,7 +63,7 @@ namespace DDDCinema.Promotions
 			Require.NotNull(ValidityRange, "ValidityRange");
 			Require.NotNull(Benefit, "Benefit");
 			Require.NotNull(ReceiveCondition, "ReceiveCondition");
-			Require.IsTrue(() => ValidityRange.IsDefined() && ValidityRange.StartsAfter(DomainTime.Current.Now), "validity range should be in future");
+			Require.IsTrue(() => ValidityRange.IsDefined() && ValidityRange.StartsAfter(DomainTime.Current.Now.AddDays(-1)), "validity range should be in future");
 			Require.IsIn(State, DraftState.New, DraftState.FixesRequired);
 			State = DraftState.Completed;
 			DomainEventBus.Current.Raise(new PromotionDraftReady(Id, Owner.Id));
@@ -81,7 +81,7 @@ namespace DDDCinema.Promotions
 			State = DraftState.FixesRequired;
 		}
 
-		public Promotion CreatePromotion()
+		public Promotion Publish()
 		{
 			Require.IsIn(State, DraftState.Accepted);
 			return new Promotion(ValidityRange, ReceiveCondition, Benefit);

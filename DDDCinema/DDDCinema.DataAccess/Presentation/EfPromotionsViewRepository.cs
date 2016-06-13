@@ -44,7 +44,8 @@ namespace DDDCinema.DataAccess.Presentation
 					Condition = pd.ReceiveCondition.Description,
 					Benefit = pd.Benefit.Description,
 					IsComplete = pd.IsComplete,
-					IsOwner = pd.Owner_Id == userId
+					IsOwner = pd.Owner_Id == userId,
+					Limit = null,
 				})
 				.FirstOrDefault();
 		}

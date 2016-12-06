@@ -15,22 +15,15 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="DDDCinema.Promotions.Approving.ApprovalProcessTimeout">
-    <Position X="9.5" Y="5.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Approving\ApprovalProcessTimeout.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="DDDCinema.Promotions.Approving.ApprovalRequest">
     <Position X="5.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAgCAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Approving\ApprovalRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DDDCinema.Promotions.Approving.PromotionApproved" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="5.25" Width="2" />
+    <Position X="8.5" Y="2" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Approving\PromotionApproved.cs</FileName>
@@ -38,7 +31,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="DDDCinema.Promotions.Approving.PromotionRejected" BaseTypeListCollapsed="true">
-    <Position X="5" Y="5.25" Width="2" />
+    <Position X="10.75" Y="2" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Approving\PromotionRejected.cs</FileName>

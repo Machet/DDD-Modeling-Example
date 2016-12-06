@@ -1,102 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="DDDCinema.Promotions.Benefit">
-    <Position X="13.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Benefit.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.Editor">
-    <Position X="22" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Editor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.Benefits.DiscountForEntry">
-    <Position X="11.5" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
-      <FileName>Benefits\DiscountForEntry.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.Benefits.FreeEntry">
-    <Position X="15" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Benefits\FreeEntry.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.Benefits.FreePremiereEntry">
-    <Position X="13.25" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Benefits\FreePremiereEntry.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.ReceiveConditions.GoToPremiere">
-    <Position X="18.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ReceiveConditions\GoToPremiere.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.ReceiveConditions.MovieToWatch">
-    <Position X="22.25" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ReceiveConditions\MovieToWatch.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchAtSpecificDay">
-    <Position X="16.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
-      <FileName>ReceiveConditions\WatchAtSpecificDay.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchSpecificMovies">
-    <Position X="20.5" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
-      <FileName>ReceiveConditions\WatchSpecificMovies.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DDDCinema.Promotions.ReceiveCondition">
-    <Position X="18.75" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ReceiveCondition.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="DDDCinema.Promotions.Promotion">
-    <Position X="13.25" Y="0.5" Width="1.75" />
+    <Position X="2.25" Y="3.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>CAACAAAAAAAAAAAAEAAAAAAAAAAAAAAECAAAAAAQAAA=</HashCode>
       <FileName>Promotion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DDDCinema.Promotions.PromotionDraft">
-    <Position X="10.75" Y="0.5" Width="2.25" />
+    <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>SQACAACAEAAAAAAAAEAAAAQABAAAAAQEAAAIFAAQgAA=</HashCode>
       <FileName>PromotionDraft.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DDDCinema.Promotions.ValidityRange">
-    <Position X="18.75" Y="0.5" Width="1.5" />
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.GoToPremiere">
+    <Position X="4" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAIAAAAAAAAAAAAAAgAAABAAAAAAAAAkAQAAA=</HashCode>
-      <FileName>ValidityRange.cs</FileName>
+      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiveConditions\GoToPremiere.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DDDCinema.Promotions.Visitor">
-    <Position X="23.75" Y="0.5" Width="1.5" />
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchAtSpecificDay">
+    <Position X="0.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Visitor.cs</FileName>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ReceiveConditions\WatchAtSpecificDay.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveConditions.WatchSpecificMovies">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ReceiveConditions\WatchSpecificMovies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.ReceiveCondition" Collapsed="true">
+    <Position X="1.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiveCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefit" Collapsed="true">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.DiscountForEntry">
+    <Position X="5.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Benefits\DiscountForEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.FreeEntry">
+    <Position X="7.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefits\FreeEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Benefits.FreePremiereEntry">
+    <Position X="9.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Benefits\FreePremiereEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Movie" Collapsed="true">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDCinema.Promotions.Granting.PromotionGrantedForVisitor">
+    <Position X="5.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Granting\PromotionGrantedForVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DDDCinema.Promotions.IMovieRepository">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBA=</HashCode>
+      <FileName>IMovieRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DDDCinema.Promotions.IPromotionRepository">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAIA=</HashCode>
+      <FileName>IPromotionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DDDCinema.Promotions.IUserInRoleRepository">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>IUserInRoleRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DDDCinema.Promotions.Granting.IPromotionCodeGenerator">
+    <Position X="5.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Granting\IPromotionCodeGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DDDCinema.Promotions.Granting.IVisitorHistoryRepository">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAgABAQAAAAAAAAAAA=</HashCode>
+      <FileName>Granting\IVisitorHistoryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DDDCinema.Promotions.DraftState">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAACAAAAAAAAAAAAAAAAAAAEAAAAAAAAQ=</HashCode>
+      <FileName>DraftState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -37,7 +37,7 @@ namespace DDDCinema.Promotions
 		public void SetValidityRange(ValidityRange range)
 		{
 			Require.NotNull(range, "range");
-			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
+			Require.IsNotIn(State, DraftState.WaitingForApproval, DraftState.Accepted);
 			ValidityRange = range;
 			CheckCompletion();
 		}
@@ -45,7 +45,7 @@ namespace DDDCinema.Promotions
 		public void SetBenefit(Benefit benefit)
 		{
 			Require.NotNull(benefit, "benefit");
-			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
+			Require.IsNotIn(State, DraftState.WaitingForApproval, DraftState.Accepted);
 			Benefit = benefit;
 			CheckCompletion();
 		}
@@ -53,7 +53,7 @@ namespace DDDCinema.Promotions
 		public void SetReceiveCondition(ReceiveCondition condition)
 		{
 			Require.NotNull(condition, "condition");
-			Require.IsNotIn(State, DraftState.Completed, DraftState.Accepted);
+			Require.IsNotIn(State, DraftState.WaitingForApproval, DraftState.Accepted);
 			ReceiveCondition = condition;
 			CheckCompletion();
 		}
@@ -65,19 +65,19 @@ namespace DDDCinema.Promotions
 			Require.NotNull(ReceiveCondition, "ReceiveCondition");
 			Require.IsTrue(() => ValidityRange.IsDefined() && ValidityRange.StartsAfter(DomainTime.Current.Now.AddDays(-1)), "validity range should be in future");
 			Require.IsIn(State, DraftState.New, DraftState.FixesRequired);
-			State = DraftState.Completed;
+			State = DraftState.WaitingForApproval;
 			DomainEventBus.Current.Raise(new PromotionDraftReady(Id, Owner.Id));
 		}
 
 		internal void MarkAsAccepted()
 		{
-			Require.IsIn(State, DraftState.Completed);
+			Require.IsIn(State, DraftState.WaitingForApproval);
 			State = DraftState.Accepted;
 		}
 
 		internal void MarkAsReworkNeeded()
 		{
-			Require.IsIn(State, DraftState.Completed);
+			Require.IsIn(State, DraftState.WaitingForApproval);
 			State = DraftState.FixesRequired;
 		}
 
@@ -94,7 +94,7 @@ namespace DDDCinema.Promotions
 				&& Benefit != null
 				&& ReceiveCondition != null
 				&& ValidityRange.IsDefined()
-				&& ValidityRange.StartsAfter(DomainTime.Current.Now);
+				&& ValidityRange.StartsAfter(DomainTime.Current.Now.AddDays(-1));
 		}
 	}
 }

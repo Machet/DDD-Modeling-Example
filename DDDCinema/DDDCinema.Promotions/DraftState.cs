@@ -3,7 +3,7 @@
     public enum DraftState
     {
         New,
-        Completed,
+        WaitingForApproval,
         Accepted,
         FixesRequired
     }

@@ -21,7 +21,7 @@ namespace DDDCinema.DataAccess.Business
 			return _context.Promotions
 				.Include(x => x.ReceiveCondition)
 				.Include(x => x.Benefit)
-				.Where(p => p.ValidityRange.StartDate < DomainTime.Current.Now && p.ValidityRange.EndDate > DomainTime.Current.Now)
+				.Where(p => p.ValidityRange.StartDate <= DomainTime.Current.Now && p.ValidityRange.EndDate >= DomainTime.Current.Now)
 				.ToList();
 		}
 

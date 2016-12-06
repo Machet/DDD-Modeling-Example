@@ -13,6 +13,7 @@ namespace DDDCinema.Promotions.Approving
 
 		public ApprovalRequest(Editor e)
 		{
+		    Id = Guid.NewGuid();
 			Editor = e;
 			Status = ApprovalStatus.Pending;
 		}
